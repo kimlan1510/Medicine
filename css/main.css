@@ -1,7 +1,7 @@
 /* For testing only */
 *:not(body):not(html) {
   box-sizing: border-box;
-  border: 2px solid red; }
+  border: 1px solid red; }
 
 .columns {
   min-height: 100px; }
@@ -42,6 +42,23 @@ li {
 
 .search-box {
   flex: 2; }
+
+.card-image {
+  position: relative; }
+  .card-image img {
+    max-width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0; }
+
+.card.medium {
+  width: 300px;
+  margin: 10px; }
+
+.main-card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; }
 
 /*! normalize.css v5.0.0 | MIT License | github.com/necolas/normalize.css */
 /**
