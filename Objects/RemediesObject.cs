@@ -144,6 +144,46 @@ namespace Medicine
         conn.Close();
       }
     }
+    public static Remedy Find(int id)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM remedies WHERE id = @RemedyId;", conn);
+      SqlParameter remedyIdParameter = new SqlParameter();
+      remedyIdParameter.ParameterName = "@RemedyId";
+      remedyIdParameter.Value = id.ToString();
+      cmd.Parameters.Add(remedyIdParameter);
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      int foundRemedyId = 0;
+      string foundRemedyName = null;
+      string foundRemedyDescription = null;
+      string foundRemedySideEffect = null;
+      string foundRemedyImage= null;
+      int foundRemedyCategoryId = 0;
+
+      while(rdr.Read())
+      {
+        foundRemedyId = rdr.GetInt32(0);
+        foundRemedyName = rdr.GetString(1);
+        foundRemedyDescription = rdr.GetString(2);
+        foundRemedySideEffect = rdr.GetString(3);
+        foundRemedyImage = rdr.GetString(4);
+        foundRemedyCategoryId = rdr.GetInt32(5);
+      }
+      Remedy foundRemedy = new Remedy(foundRemedyName, foundRemedyDescription, foundRemedySideEffect, foundRemedyImage, foundRemedyCategoryId, foundRemedyId);
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+      return foundRemedy;
+    }
 
     public static void DeleteAll()
     {
