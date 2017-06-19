@@ -160,6 +160,65 @@ namespace Medicine
      return foundDisease;
     }
 
+    public List<Remedy> GetRemedy()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT remedies.* FROM diseases JOIN diseases_remedies ON (diseases.id = diseases_remedies.diseases_id) JOIN remedies ON (diseases_remedies.remedies_id = remedies.id) WHERE diseases.id = @diseaseId;", conn);
+      SqlParameter diseaseIdParam = new SqlParameter("@diseaseId", this.GetId().ToString());
+
+      cmd.Parameters.Add(diseaseIdParam);
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      List<Remedy> remedies = new List<Remedy>{};
+
+      while(rdr.Read())
+      {
+        int id = rdr.GetInt32(0);
+        string name = rdr.GetString(1);
+        string description = rdr.GetString(2);
+        string side_effect = rdr.GetString(3);
+        string image = rdr.GetString(4);
+        int categories_id = rdr.GetInt32(5);
+        Remedy newRemedy = new Remedy(name, description, side_effect, image, categories_id, id);
+        remedies.Add(newRemedy);
+      }
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+        if (conn != null)
+      {
+        conn.Close();
+      }
+      return remedies;
+    }
+
+    public void AddRemedy(Remedy newRemedy)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("INSERT INTO diseases_remedies (diseases_id, remedies_id) VALUES (@DiseaseId, @RemedyId);", conn);
+
+      SqlParameter DiseaseIdParameter = new SqlParameter("@DiseaseId", this.GetId());
+      SqlParameter RemedyIdParameter = new SqlParameter( "@RemedyId", newRemedy.GetId());
+
+      cmd.Parameters.Add(DiseaseIdParameter);
+      cmd.Parameters.Add(RemedyIdParameter);
+      cmd.ExecuteNonQuery();
+      if (conn != null)
+      {
+        conn.Close();
+      }
+    }
+
+
+
+
     public static void DeleteAll()
     {
       SqlConnection conn = DB.Connection();
