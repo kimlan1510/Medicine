@@ -101,6 +101,23 @@ namespace Medicine
     }
 
     [Fact]
+    public void Test_Search_SearchesDiseaseInDatabase()
+    {
+      //Arrange
+      Disease testDisease1 = new Disease("cold", "running nose", "image1", 1);
+      testDisease1.Save();
+      Disease testDisease2 = new Disease("fever", "running nose", "image2", 2);
+      testDisease2.Save();
+
+      //Act
+      List<Disease> resultDiseaseList = Disease.SearchDisease("running nose");
+      List<Disease> testDiseaseList = new List<Disease>{testDisease1, testDisease2};
+
+      //Assert
+      Assert.Equal(resultDiseaseList, testDiseaseList);
+    }
+
+    [Fact]
     public void Delete_DeletesDiseaseAssociationsFromDatabase_DiseaseList()
     {
      //Arrange
