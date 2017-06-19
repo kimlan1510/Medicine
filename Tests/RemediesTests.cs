@@ -64,11 +64,93 @@ namespace Medicine
 
       Assert.Equal(testRemedy, foundRemedy);
     }
+    [Fact]
+    public void AddDisease_AddsDiseasesToRemedy_DiseaseList()
+    {
+      Remedy testRemedy = new Remedy("Herbal", "descriptionHerbal", "sideEffectHerbal",  "website.com/photoOfRemedy.jpg", 1);
+      testRemedy.Save();
+
+      Disease testDisease = new Disease("cold", "running nose", "image1", 1);
+      testDisease.Save();
+
+      testRemedy.AddDisease(testDisease);
+
+      List<Disease> result = testRemedy.GetDisease();
+      List<Disease> testList = new List<Disease>{testDisease};
+
+      Assert.Equal(testList, result);
+    }
+
+    [Fact]
+    public void Test_ReturnsAllDiseases_DiseaseList()
+    {
+      Remedy testRemedy = new Remedy("Herbal", "descriptionHerbal", "sideEffectHerbal",  "website.com/photoOfRemedy.jpg", 1);
+      testRemedy.Save();
+
+      Disease testDisease1 = new Disease("cold", "running nose", "image1", 1);
+      testDisease1.Save();
+
+      Disease testDisease2 = new Disease("flu", "sick", "image1", 2);
+      testDisease2.Save();
+
+      testRemedy.AddDisease(testDisease1);
+      testRemedy.AddDisease(testDisease2);
+
+      List<Disease> result = testRemedy.GetDisease();
+      List<Disease> testList = new List<Disease> {testDisease1, testDisease2};
+
+      Assert.Equal(testList, result);
+    }
+    [Fact]
+    public void Delete_DeletesRemedyAssociationsFromDataBase_RemedyList()
+    {
+      Disease testDisease = new Disease("cold", "running nose", "image1", 1);
+      testDisease.Save();
+
+      Remedy testRemedy = new Remedy("Herbal", "descriptionHerbal", "sideEffectHerbal",  "website.com/photoOfRemedy.jpg", 1);
+      testRemedy.Save();
+
+      testRemedy.AddDisease(testDisease);
+      testRemedy.Delete();
+
+      List<Remedy> result = testDisease.GetRemedy();
+      List<Remedy> test = new List<Remedy>{};
+
+      Assert.Equal(test, result);
+    }
+    [Fact]
+    public void Test_Update_UpdatesRemedyInDatabase()
+    {
+      //Arrange
+      Remedy testRemedy = new Remedy("Herbal", "descriptionHerbal", "sideEffectHerbal",  "website.com/photoOfRemedy.jpg", 1);
+      testRemedy.Save();
+      string newName = "Physical";
+      string newDescription = "fun";
+      string newSideEffect = "drowsy";
+      string newImage = "image2";
+      int newCategoryId = 2;
+
+      //Act
+      testRemedy.Update(newName, newDescription, newSideEffect, newImage, newCategoryId);
+      string result1 = testRemedy.GetName();
+      string result2 = testRemedy.GetDescription();
+      string result3 = testRemedy.GetSideEffect();
+      string result4 = testRemedy.GetImage();
+      int result5 = testRemedy.GetCategoryId();
+
+      //Assert
+      Assert.Equal(newName, result1);
+      Assert.Equal(newDescription, result2);
+      Assert.Equal(newSideEffect, result3);
+      Assert.Equal(newImage, result4);
+      Assert.Equal(newCategoryId, result5);
+    }
     public void Dispose()
     {
       Remedy.DeleteAll();
       Disease.DeleteAll();
       CategoryDisease.DeleteAll();
+
     }
   }
 }

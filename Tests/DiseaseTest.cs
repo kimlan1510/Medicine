@@ -75,7 +75,6 @@ namespace Medicine
       Assert.Equal(testList, result);
     }
 
-
     [Fact]
     public void Test_Update_UpdatesDiseaseInDatabase()
     {
@@ -123,14 +122,12 @@ namespace Medicine
      Assert.Equal(testRemedyDisease, resultRemedyDisease);
     }
 
-
-
     public void Dispose()
     {
       Disease.DeleteAll();
       Remedy.DeleteAll();
       CategoryDisease.DeleteAll();
-    }
 
+    }
   }
 }

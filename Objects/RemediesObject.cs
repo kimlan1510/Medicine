@@ -185,22 +185,73 @@ namespace Medicine
       return foundRemedy;
     }
 
-    public static void DeleteAll()
+    public void AddDisease(Disease newDisease)
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
-      SqlCommand cmd = new SqlCommand("DELETE FROM remedies;", conn);
+
+      SqlCommand cmd = new SqlCommand("INSERT INTO diseases_remedies (diseases_id, remedies_id) VALUES (@DiseaseId, @RemedyId);", conn);
+      SqlParameter diseaseIdParameter = new SqlParameter();
+      diseaseIdParameter.ParameterName = "@DiseaseId";
+      diseaseIdParameter.Value = newDisease.GetId();
+      cmd.Parameters.Add(diseaseIdParameter);
+
+      SqlParameter remedyIdParameter = new SqlParameter();
+      remedyIdParameter.ParameterName = "@RemedyId";
+      remedyIdParameter.Value = this.GetId();
+      cmd.Parameters.Add(remedyIdParameter);
+
       cmd.ExecuteNonQuery();
-      conn.Close();
+
+      if (conn != null)
+      {
+        conn.Close();
+      }
+    }
+    public List<Disease> GetDisease()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT diseases.* FROM remedies JOIN diseases_remedies ON (remedies.id = diseases_remedies.remedies_id) JOIN diseases ON (diseases_remedies.diseases_id = diseases.id) WHERE remedies.id = @RemedyId;", conn);
+      SqlParameter remedyIdParameter = new SqlParameter();
+      remedyIdParameter.ParameterName = "@RemedyId";
+      remedyIdParameter.Value = this.GetId();
+
+      cmd.Parameters.Add(remedyIdParameter);
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      List<Disease> diseases = new List<Disease> {};
+
+      while(rdr.Read())
+      {
+        int id = rdr.GetInt32(0);
+        string name = rdr.GetString(1);
+        string symtoms = rdr.GetString(2);
+        string image = rdr.GetString(3);
+        int category_id = rdr.GetInt32(4);
+        Disease newDisease = new Disease(name, symtoms, image, category_id, id);
+        diseases.Add(newDisease);
+      }
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+      return diseases;
     }
     public void Delete()
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("DELETE FROM remedies WHERE id = @RemeidiesID; DELETE FROM diseases_remedies WHERE remedies_id = @RemediesId;", conn);
+      SqlCommand cmd = new SqlCommand("DELETE FROM remedies WHERE id = @RemeidiesId; DELETE FROM diseases_remedies WHERE remedies_id = @RemeidiesId;", conn);
       SqlParameter RemedyIdParameter = new SqlParameter();
-      RemedyIdParameter.ParameterName = "@RemeidiesID";
+      RemedyIdParameter.ParameterName = "@RemeidiesId";
       RemedyIdParameter.Value = this.GetId();
 
       cmd.Parameters.Add(RemedyIdParameter);
@@ -210,6 +261,46 @@ namespace Medicine
       {
         conn.Close();
       }
+    }
+    public void Update(string name, string description, string sideEffect, string image, int category_id)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("UPDATE remedies SET name = @name, description = @description, side_effect = @sideEffect, image = @image, categories_id = @categories_id WHERE id = @Id;", conn);
+
+      SqlParameter namePara = new SqlParameter("@name", name);
+      SqlParameter descriptionPara = new SqlParameter("@description", description);
+      SqlParameter sideEffectPara = new SqlParameter("@sideEffect", sideEffect);
+      SqlParameter imagePara = new SqlParameter("@image", image);
+      SqlParameter categoryIdPara = new SqlParameter("@categories_id", category_id);
+      SqlParameter idPara = new SqlParameter("@Id", this.GetId());
+
+      cmd.Parameters.Add(namePara);
+      cmd.Parameters.Add(descriptionPara);
+      cmd.Parameters.Add(sideEffectPara);
+      cmd.Parameters.Add(imagePara);
+      cmd.Parameters.Add(categoryIdPara);
+      cmd.Parameters.Add(idPara);
+
+      this._name = name;
+      this._description = description;
+      this._sideEffect = sideEffect;
+      this._image = image;
+      this._category_id = category_id;
+      cmd.ExecuteNonQuery();
+      conn.Close();
+    }
+
+
+
+    public static void DeleteAll()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+      SqlCommand cmd = new SqlCommand("DELETE FROM remedies;", conn);
+      cmd.ExecuteNonQuery();
+      conn.Close();
     }
   }
 }
