@@ -125,37 +125,73 @@ namespace Medicine
     }
 
     public List<Disease> GetDisease()
-        {
-         SqlConnection conn = DB.Connection();
-         conn.Open();
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
 
-         SqlCommand cmd = new SqlCommand("SELECT * FROM diseases WHERE category_id = @CategoryId;", conn);
-         SqlParameter CategoryDiseaseIdPara = new SqlParameter("@CategoryId", this.GetId());
+      SqlCommand cmd = new SqlCommand("SELECT * FROM diseases WHERE category_id = @CategoryId;", conn);
+      SqlParameter CategoryDiseaseIdPara = new SqlParameter("@CategoryId", this.GetId());
 
-         cmd.Parameters.Add(CategoryDiseaseIdPara);
-         SqlDataReader rdr = cmd.ExecuteReader();
+      cmd.Parameters.Add(CategoryDiseaseIdPara);
+      SqlDataReader rdr = cmd.ExecuteReader();
 
-         List<Disease> AllDisease = new List<Disease> {};
-         while(rdr.Read())
-         {
-           int id = rdr.GetInt32(0);
-           string name = rdr.GetString(1);
-           string symtoms = rdr.GetString(2);
-           string image = rdr.GetString(3);
-           int category_id = rdr.GetInt32(4);
-           Disease newDisease = new Disease(name, symtoms, image, category_id, id);
-           AllDisease.Add(newDisease);
-         }
-         if (rdr != null)
-         {
-           rdr.Close();
-         }
-         if (conn != null)
-         {
-           conn.Close();
-         }
-         return AllDisease;
-        }
+      List<Disease> AllDisease = new List<Disease> {};
+      while(rdr.Read())
+      {
+        int id = rdr.GetInt32(0);
+        string name = rdr.GetString(1);
+        string symtoms = rdr.GetString(2);
+        string image = rdr.GetString(3);
+        int category_id = rdr.GetInt32(4);
+        Disease newDisease = new Disease(name, symtoms, image, category_id, id);
+        AllDisease.Add(newDisease);
+      }
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+      return AllDisease;
+    }
+
+    public void Update(string newName)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("UPDATE categories_diseases SET name = @newName WHERE id = @categoryDiseaseId;", conn);
+
+      SqlParameter newNamePara = new SqlParameter("@newname", newName);
+      cmd.Parameters.Add(newNamePara);
+
+      SqlParameter categoryDiseaseIdPara = new SqlParameter("@categoryDiseaseId", this.GetId());
+      cmd.Parameters.Add(categoryDiseaseIdPara);
+
+      this._name = newName;
+      cmd.ExecuteNonQuery();
+      conn.Close();
+    }
+
+    public void Delete()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("DELETE FROM categories_diseases WHERE id = @CategoryDiseaseId; DELETE FROM diseases WHERE category_id = @CategoryDiseaseId;", conn);
+
+      SqlParameter CategoryDiseaseIdParam = new SqlParameter("@CategoryDiseaseId", this.GetId());
+
+      cmd.Parameters.Add(CategoryDiseaseIdParam);
+      cmd.ExecuteNonQuery();
+
+      if (conn != null)
+      {
+        conn.Close();
+      }
+    }
 
 
     public static void DeleteAll()
