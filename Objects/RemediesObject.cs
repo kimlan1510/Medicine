@@ -22,5 +22,47 @@ namespace Medicine
       _image = image;
       _category_id = categoryId;
     }
+    public override bool Equals(System.Object otherRemedy)
+    {
+      if (!(otherRemedy is Remedy))
+      {
+        return false;
+      }
+      else
+      {
+        Remedy newRemedy = (Remedy) otherRemedy;
+        bool idEquality = this.GetId() == newRemedy.GetId();
+        bool nameEquality = this.GetName() == newRemedy.GetName();
+        bool descriptionEquality = this.GetDescription() == newRemedy.GetDescription();
+        bool sideEffect = this.GetSideEffect() == newRemedy.GetSideEffect();
+        bool imageEquality = this.GetImage() == newRemedy.GetImage();
+        bool categoryIdEquality = this.GetCategoryId() == newRemedy.GetCategoryId();
+        return (idEquality && nameEquality && descriptionEquality && sideEffect && imageEquality && categoryIdEquality);
+      }
+    }
+    public int GetId()
+    {
+      return _id;
+    }
+    public string GetName()
+    {
+      return _name;
+    }
+    public string GetDescription()
+    {
+      return _description;
+    }
+    public string GetSideEffect()
+    {
+      return _sideEffect;
+    }
+    public string GetImage()
+    {
+      return _image;
+    }
+    public int GetCategoryId()
+    {
+      return _category_id;
+    }
   }
 }
