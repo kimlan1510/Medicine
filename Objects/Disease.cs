@@ -246,11 +246,35 @@ namespace Medicine
     public static List<Disease> SearchDisease(string inputString)
     {
       List<Disease> AllDiseases = new List<Disease>{};
-      SqlConnection conn = DB.Connnection();
+      SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("SELECT * FROM diseases WHERE (name, symtoms) LIKE @inputString;", conn);
-      SqlParameter searchDiseasePara = new SqlParameter("@inputString", inputString);
+      SqlCommand cmd = new SqlCommand("SELECT * FROM diseases WHERE symtoms LIKE @inputString OR name LIKE @inputString;", conn);
+      SqlParameter searchDiseasePara = new SqlParameter("@inputString", "%" + inputString + "%");
+
+      cmd.Parameters.Add(searchDiseasePara);
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+        int id = rdr.GetInt32(0);
+        string name = rdr.GetString(1);
+        string symtoms = rdr.GetString(2);
+        string image = rdr.GetString(3);
+        int category_id = rdr.GetInt32(4);
+
+        Disease foundDisease = new Disease(name, symtoms, image, category_id, id);
+        AllDiseases.Add(foundDisease);
+      }
+      if(rdr != null)
+      {
+        rdr.Close();
+      }
+      if(conn != null)
+      {
+        conn.Close();
+      }
+      return AllDiseases;
     }
 
 
