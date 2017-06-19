@@ -30,6 +30,7 @@ namespace Medicine
 
       Assert.Equal(firstRemedy, secondRemedy);
     }
+
     [Fact]
     public void Test_Save_SavesRemedyToDatabase()
     {
@@ -41,6 +42,7 @@ namespace Medicine
 
       Assert.Equal(testList, result);
     }
+
     [Fact]
     public void Test_Save_AssignsIdToRemedy()
     {
@@ -54,6 +56,7 @@ namespace Medicine
 
       Assert.Equal(testId, result);
     }
+
     [Fact]
     public void Test_Find_FindsRemedyInDatabase()
     {
@@ -64,6 +67,7 @@ namespace Medicine
 
       Assert.Equal(testRemedy, foundRemedy);
     }
+
     [Fact]
     public void AddDisease_AddsDiseasesToRemedy_DiseaseList()
     {
@@ -101,6 +105,24 @@ namespace Medicine
 
       Assert.Equal(testList, result);
     }
+
+    [Fact]
+    public void Test_Search_SearchesRemedyInDatabase()
+    {
+      //Arrange
+      Remedy testRemedy1 = new Remedy("Herbal", "descriptionHerbal", "death",  "website.com/photoOfRemedy.jpg", 1);
+      testRemedy1.Save();
+      Remedy testRemedy2 = new Remedy("Advil", "description", "not quite death",  "website.com/photoOfRemedy.jpg", 1);
+      testRemedy2.Save();
+
+      //Act
+      List<Remedy> resultRemedyList = Remedy.SearchRemedy("death");
+      List<Remedy> testRemedyList = new List<Remedy>{testRemedy1, testRemedy2};
+
+      //Assert
+      Assert.Equal(resultRemedyList, testRemedyList);
+    }
+
     [Fact]
     public void Delete_DeletesRemedyAssociationsFromDataBase_RemedyList()
     {

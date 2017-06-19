@@ -244,24 +244,44 @@ namespace Medicine
       }
       return diseases;
     }
-    public void Delete()
+
+    public static List<Remedy> SearchRemedy(string inputString)
     {
+      List<Remedy> AllRemedy = new List<Remedy>{};
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("DELETE FROM remedies WHERE id = @RemeidiesId; DELETE FROM diseases_remedies WHERE remedies_id = @RemeidiesId;", conn);
-      SqlParameter RemedyIdParameter = new SqlParameter();
-      RemedyIdParameter.ParameterName = "@RemeidiesId";
-      RemedyIdParameter.Value = this.GetId();
+      SqlCommand cmd = new SqlCommand("SELECT * FROM remedies WHERE name LIKE @inputString OR description LIKE @inputString OR side_effect LIKE @inputString;", conn);
+      SqlParameter searchRemedyPara = new SqlParameter("@inputString", "%" + inputString + "%");
 
-      cmd.Parameters.Add(RemedyIdParameter);
-      cmd.ExecuteNonQuery();
+      cmd.Parameters.Add(searchRemedyPara);
+      SqlDataReader rdr = cmd.ExecuteReader();
 
-      if (conn != null)
+      while(rdr.Read())
+      {
+        int id = rdr.GetInt32(0);
+        string name = rdr.GetString(1);
+        string description = rdr.GetString(2);
+        string side_effect = rdr.GetString(3);
+        string image = rdr.GetString(4);
+        int category_id = rdr.GetInt32(5);
+
+        Remedy foundRemedy = new Remedy(name, description, side_effect, image, category_id, id);
+        AllRemedy.Add(foundRemedy);
+      }
+      if(rdr != null)
+      {
+        rdr.Close();
+      }
+      if(conn != null)
       {
         conn.Close();
       }
+      return AllRemedy;
     }
+
+
+
     public void Update(string name, string description, string sideEffect, string image, int category_id)
     {
       SqlConnection conn = DB.Connection();
@@ -290,6 +310,25 @@ namespace Medicine
       this._category_id = category_id;
       cmd.ExecuteNonQuery();
       conn.Close();
+    }
+
+    public void Delete()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("DELETE FROM remedies WHERE id = @RemeidiesId; DELETE FROM diseases_remedies WHERE remedies_id = @RemeidiesId;", conn);
+      SqlParameter RemedyIdParameter = new SqlParameter();
+      RemedyIdParameter.ParameterName = "@RemeidiesId";
+      RemedyIdParameter.Value = this.GetId();
+
+      cmd.Parameters.Add(RemedyIdParameter);
+      cmd.ExecuteNonQuery();
+
+      if (conn != null)
+      {
+        conn.Close();
+      }
     }
 
 
