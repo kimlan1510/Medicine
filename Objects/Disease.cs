@@ -216,6 +216,49 @@ namespace Medicine
       }
     }
 
+    public void Update(string name, string symtoms, string image, int category_id)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("UPDATE diseases SET name = @name, symtoms = @symtoms, image = @image, category_id = @category_id WHERE id = @Id;", conn);
+
+      SqlParameter namePara = new SqlParameter("@name", name);
+      SqlParameter symtomsPara = new SqlParameter("@symtoms", symtoms);
+      SqlParameter imagePara = new SqlParameter("@image", image);
+      SqlParameter categoryIdPara = new SqlParameter("@category_id", category_id);
+      SqlParameter idPara = new SqlParameter("@Id", this.GetId());
+
+      cmd.Parameters.Add(namePara);
+      cmd.Parameters.Add(symtomsPara);
+      cmd.Parameters.Add(imagePara);
+      cmd.Parameters.Add(categoryIdPara);
+      cmd.Parameters.Add(idPara);
+
+      this._name = name;
+      this._symtoms = symtoms;
+      this._image = image;
+      this._category_id = category_id;
+      cmd.ExecuteNonQuery();
+      conn.Close();
+    }
+
+    public void Delete()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("DELETE FROM diseases WHERE id = @diseaseId; DELETE FROM diseases_remedies WHERE diseases_id = @diseaseId;", conn);
+      SqlParameter diseaseIdParameter = new SqlParameter("@diseaseId", this.GetId());
+
+      cmd.Parameters.Add(diseaseIdParameter);
+      cmd.ExecuteNonQuery();
+
+      if (conn != null)
+      {
+       conn.Close();
+      }
+    }
 
 
 

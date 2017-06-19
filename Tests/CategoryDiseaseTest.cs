@@ -122,6 +122,7 @@ namespace Medicine
     public void Dispose()
     {
       CategoryDisease.DeleteAll();
+      Remedy.DeleteAll();
       Disease.DeleteAll();
     }
   }
