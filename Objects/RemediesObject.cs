@@ -64,5 +64,36 @@ namespace Medicine
     {
       return _category_id;
     }
+    public static List<Remedy> GetAll()
+    {
+      List<Remedy> allRemedys = new List<Remedy>{};
+
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM remedies;", conn);
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+        int remedyId = rdr.GetInt32(0);
+        string remedyName = rdr.GetString(1);
+        string remedyDescription = rdr.GetString(2);
+        string remedySideEffect = rdr.GetString(3);
+        string remedyImage = rdr.GetString(4);
+        int remedyCategoryId = rdr.GetInt32(5);
+        Remedy newRemedy = new Remedy(remedyName, remedyDescription, remedySideEffect, remedyImage, remedyCategoryId, remedyId);
+        allRemedys.Add(newRemedy);
+      }
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+      return allRemedys;
+    }
   }
 }
