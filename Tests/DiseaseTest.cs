@@ -75,13 +75,59 @@ namespace Medicine
       Assert.Equal(testList, result);
     }
 
+    [Fact]
+    public void Test_Update_UpdatesDiseaseInDatabase()
+    {
+      //Arrange
+      Disease testDisease = new Disease("cold", "running nose", "image1", 1);
+      testDisease.Save();
+      string newName = "fever";
+      string newSymtoms = "Very hot";
+      string newImage = "image2";
+      int newCategoryId = 2;
 
+      //Act
+      testDisease.Update("fever", "Very hot", "image2", 2);
+      string result1 = testDisease.GetName();
+      string result2 = testDisease.GetSymtoms();
+      string result3 = testDisease.GetImage();
+      int result4 = testDisease.GetCategoryId();
+
+      //Assert
+      Assert.Equal(newName, result1);
+      Assert.Equal(newSymtoms, result2);
+      Assert.Equal(newImage, result3);
+      Assert.Equal(newCategoryId, result4);
+    }
+
+    [Fact]
+    public void Delete_DeletesDiseaseAssociationsFromDatabase_DiseaseList()
+    {
+     //Arrange
+     Disease testDisease = new Disease("cold", "running nose", "image1", 1);
+     testDisease.Save();
+
+     Remedy testRemedy = new Remedy("orange", "yellow sour fruit", "kinda sweet", "image2", 1);
+     testRemedy.Save();
+
+
+     //Act
+     testDisease.AddRemedy(testRemedy);
+     testDisease.Delete();
+
+     List<Disease> resultRemedyDisease = Disease.GetAll();
+     List<Disease> testRemedyDisease = new List<Disease> {};
+
+     //Assert
+     Assert.Equal(testRemedyDisease, resultRemedyDisease);
+    }
 
     public void Dispose()
     {
       Disease.DeleteAll();
       Remedy.DeleteAll();
-      //DiseaseCategory();
+      CategoryDisease.DeleteAll();
+
     }
   }
 }

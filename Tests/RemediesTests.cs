@@ -149,6 +149,8 @@ namespace Medicine
     {
       Remedy.DeleteAll();
       Disease.DeleteAll();
+      CategoryDisease.DeleteAll();
+
     }
   }
 }
