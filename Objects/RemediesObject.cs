@@ -95,6 +95,56 @@ namespace Medicine
       }
       return allRemedys;
     }
+    public void Save()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("INSERT INTO remedies (name, description, side_effect, image, categories_id) OUTPUT INSERTED.id VALUES (@RemedyName, @RemedyDescription, @RemedySideEffect, @RemedyImage, @RemedyCategoryId);", conn);
+
+      SqlParameter nameParameter = new SqlParameter();
+      nameParameter.ParameterName = "@RemedyName";
+      nameParameter.Value = this.GetName();
+
+      SqlParameter descriptionParameter = new SqlParameter();
+      descriptionParameter.ParameterName = "@RemedyDescription";
+      descriptionParameter.Value = this.GetDescription();
+
+      SqlParameter sideEffectParameter = new SqlParameter();
+      sideEffectParameter.ParameterName = "@RemedySideEffect";
+      sideEffectParameter.Value = this.GetSideEffect();
+
+      SqlParameter imageParameter = new SqlParameter();
+      imageParameter.ParameterName = "@RemedyImage";
+      imageParameter.Value = this.GetImage();
+
+      SqlParameter categoryIdParameter = new SqlParameter();
+      categoryIdParameter.ParameterName = "@RemedyCategoryId";
+      categoryIdParameter.Value = this.GetCategoryId();
+
+
+      cmd.Parameters.Add(nameParameter);
+      cmd.Parameters.Add(descriptionParameter);
+      cmd.Parameters.Add(sideEffectParameter);
+      cmd.Parameters.Add(imageParameter);
+      cmd.Parameters.Add(categoryIdParameter);
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+        this._id = rdr.GetInt32(0);
+      }
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if(conn != null)
+      {
+        conn.Close();
+      }
+    }
+
     public static void DeleteAll()
     {
       SqlConnection conn = DB.Connection();

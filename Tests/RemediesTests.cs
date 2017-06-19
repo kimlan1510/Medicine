@@ -30,6 +30,17 @@ namespace Medicine
 
       Assert.Equal(firstRemedy, secondRemedy);
     }
+    [Fact]
+    public void Test_Save_SavesRemedyToDatabase()
+    {
+      Remedy testRemedy = new Remedy("Herbal", "descriptionHerbal", "sideEffectHerbal",  "website.com/photoOfRemedy.jpg", 1);
+      testRemedy.Save();
+
+      List<Remedy> result = Remedy.GetAll();
+      List<Remedy> testList = new List<Remedy>{testRemedy};
+
+      Assert.Equal(testList, result);
+    }
     public void Dispose()
     {
       Remedy.DeleteAll();
