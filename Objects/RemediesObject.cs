@@ -185,24 +185,6 @@ namespace Medicine
       return foundRemedy;
     }
 
-    public void Delete()
-    {
-      SqlConnection conn = DB.Connection();
-      conn.Open();
-
-      SqlCommand cmd = new SqlCommand("DELETE FROM remedies WHERE id = @RemeidiesId; DELETE FROM diseases_remedies WHERE remedies_id = @RemeidiesId;", conn);
-      SqlParameter RemedyIdParameter = new SqlParameter();
-      RemedyIdParameter.ParameterName = "@RemeidiesId";
-      RemedyIdParameter.Value = this.GetId();
-
-      cmd.Parameters.Add(RemedyIdParameter);
-      cmd.ExecuteNonQuery();
-
-      if (conn != null)
-      {
-        conn.Close();
-      }
-    }
     public void AddDisease(Disease newDisease)
     {
       SqlConnection conn = DB.Connection();
@@ -261,6 +243,53 @@ namespace Medicine
         conn.Close();
       }
       return diseases;
+    }
+    public void Delete()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("DELETE FROM remedies WHERE id = @RemeidiesId; DELETE FROM diseases_remedies WHERE remedies_id = @RemeidiesId;", conn);
+      SqlParameter RemedyIdParameter = new SqlParameter();
+      RemedyIdParameter.ParameterName = "@RemeidiesId";
+      RemedyIdParameter.Value = this.GetId();
+
+      cmd.Parameters.Add(RemedyIdParameter);
+      cmd.ExecuteNonQuery();
+
+      if (conn != null)
+      {
+        conn.Close();
+      }
+    }
+    public void Update(string name, string description, string sideEffect, string image, int category_id)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("UPDATE remedies SET name = @name, description = @description, side_effect = @sideEffect, image = @image, categories_id = @categories_id WHERE id = @Id;", conn);
+
+      SqlParameter namePara = new SqlParameter("@name", name);
+      SqlParameter descriptionPara = new SqlParameter("@description", description);
+      SqlParameter sideEffectPara = new SqlParameter("@sideEffect", sideEffect);
+      SqlParameter imagePara = new SqlParameter("@image", image);
+      SqlParameter categoryIdPara = new SqlParameter("@categories_id", category_id);
+      SqlParameter idPara = new SqlParameter("@Id", this.GetId());
+
+      cmd.Parameters.Add(namePara);
+      cmd.Parameters.Add(descriptionPara);
+      cmd.Parameters.Add(sideEffectPara);
+      cmd.Parameters.Add(imagePara);
+      cmd.Parameters.Add(categoryIdPara);
+      cmd.Parameters.Add(idPara);
+
+      this._name = name;
+      this._description = description;
+      this._sideEffect = sideEffect;
+      this._image = image;
+      this._category_id = category_id;
+      cmd.ExecuteNonQuery();
+      conn.Close();
     }
 
 

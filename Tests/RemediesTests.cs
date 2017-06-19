@@ -118,6 +118,33 @@ namespace Medicine
 
       Assert.Equal(test, result);
     }
+    [Fact]
+    public void Test_Update_UpdatesRemedyInDatabase()
+    {
+      //Arrange
+      Remedy testRemedy = new Remedy("Herbal", "descriptionHerbal", "sideEffectHerbal",  "website.com/photoOfRemedy.jpg", 1);
+      testRemedy.Save();
+      string newName = "Physical";
+      string newDescription = "fun";
+      string newSideEffect = "drowsy";
+      string newImage = "image2";
+      int newCategoryId = 2;
+
+      //Act
+      testRemedy.Update(newName, newDescription, newSideEffect, newImage, newCategoryId);
+      string result1 = testRemedy.GetName();
+      string result2 = testRemedy.GetDescription();
+      string result3 = testRemedy.GetSideEffect();
+      string result4 = testRemedy.GetImage();
+      int result5 = testRemedy.GetCategoryId();
+
+      //Assert
+      Assert.Equal(newName, result1);
+      Assert.Equal(newDescription, result2);
+      Assert.Equal(newSideEffect, result3);
+      Assert.Equal(newImage, result4);
+      Assert.Equal(newCategoryId, result5);
+    }
     public void Dispose()
     {
       Remedy.DeleteAll();
