@@ -243,15 +243,15 @@ namespace Medicine
       conn.Close();
     }
 
-    public static List<Disease> SearchDisease(string inputString)
-    {
-      List<Disease> AllDiseases = new List<Disease>{};
-      SqlConnection conn = DB.Connnection();
-      conn.Open();
-
-      SqlCommand cmd = new SqlCommand("SELECT * FROM diseases WHERE (name, symtoms) LIKE @inputString;", conn);
-      SqlParameter searchDiseasePara = new SqlParameter("@inputString", inputString);
-    }
+    // public static List<Disease> SearchDisease(string inputString)
+    // {
+    //   List<Disease> AllDiseases = new List<Disease>{};
+    //   SqlConnection conn = DB.Connnection();
+    //   conn.Open();
+    //
+    //   SqlCommand cmd = new SqlCommand("SELECT * FROM diseases WHERE (name, symtoms) LIKE @inputString;", conn);
+    //   SqlParameter searchDiseasePara = new SqlParameter("@inputString", inputString);
+    // }
 
 
 
