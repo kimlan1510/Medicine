@@ -193,5 +193,23 @@ namespace Medicine
       cmd.ExecuteNonQuery();
       conn.Close();
     }
+    public void Delete()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("DELETE FROM remedies WHERE id = @RemeidiesID; DELETE FROM diseases_remedies WHERE remedies_id = @RemediesId;", conn);
+      SqlParameter RemedyIdParameter = new SqlParameter();
+      RemedyIdParameter.ParameterName = "@RemeidiesID";
+      RemedyIdParameter.Value = this.GetId();
+
+      cmd.Parameters.Add(RemedyIdParameter);
+      cmd.ExecuteNonQuery();
+
+      if (conn != null)
+      {
+        conn.Close();
+      }
+    }
   }
 }
