@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 
 namespace Medicine
 {
-  [Collection("tester")]
+  [Collection("Medicine")]
   public class RemedyTest : IDisposable
   {
     public RemedyTest()
@@ -67,6 +67,8 @@ namespace Medicine
     public void Dispose()
     {
       Remedy.DeleteAll();
+      Disease.DeleteAll();
+      CategoryDisease.DeleteAll();
     }
   }
 }
