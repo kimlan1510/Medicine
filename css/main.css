@@ -21,6 +21,24 @@ a {
 li {
   list-style-type: none; }
 
+.container {
+  max-width: 1300px; }
+
+.info {
+  display: flex;
+  flex-wrap: wrap; }
+
+.remedy-image {
+  width: 50%; }
+  .remedy-image img {
+    max-width: 100%; }
+
+.text {
+  width: 50%; }
+
+.main-remedy #remedy-name {
+  text-align: center; }
+
 .splash-container {
   display: none; }
 

@@ -1,0 +1,20 @@
+.info {
+  display: flex;
+  flex-wrap: wrap;
+  }
+
+  .remedy-image {
+    width: 50%;
+    img {
+      max-width: 100%;
+    }
+  }
+
+.text {
+  width: 50%;
+}
+.main-remedy {
+  #remedy-name {
+    text-align: center;
+  }
+}
