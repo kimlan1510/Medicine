@@ -51,11 +51,31 @@ namespace Medicine
       Assert.Equal(testCategoryDisease, foundCategoryDisease);
     }
 
+    [Fact]
+    public void Test_GetDisease_RetrieveAllDiseaseWithinCategoryDisease()
+    {
+      //Arrange
+      CategoryDisease testCategoryDisease = new CategoryDisease("flu");
+      testCategoryDisease.Save();
+
+      Disease firstDisease = new Disease("cold","running nose", "image1", testCategoryDisease.GetId());
+      firstDisease.Save();
+      Disease secondDisease = new Disease("fever", "hot", "image2", testCategoryDisease.GetId());
+      secondDisease.Save();
+
+      //Act
+      List<Disease> testDiseaseList = new List<Disease>{firstDisease, secondDisease};
+      List<Disease> resultDiseaseList = testCategoryDisease.GetDisease();
+
+      //Assert
+      Assert.Equal(testDiseaseList, resultDiseaseList);
+    }
+
 
     public void Dispose()
     {
       CategoryDisease.DeleteAll();
-
+      Disease.DeleteAll();
     }
   }
 }

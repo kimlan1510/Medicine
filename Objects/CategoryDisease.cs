@@ -124,6 +124,39 @@ namespace Medicine
      return foundCategoryDisease;
     }
 
+    public List<Disease> GetDisease()
+        {
+         SqlConnection conn = DB.Connection();
+         conn.Open();
+
+         SqlCommand cmd = new SqlCommand("SELECT * FROM diseases WHERE category_id = @CategoryId;", conn);
+         SqlParameter CategoryDiseaseIdPara = new SqlParameter("@CategoryId", this.GetId());
+
+         cmd.Parameters.Add(CategoryDiseaseIdPara);
+         SqlDataReader rdr = cmd.ExecuteReader();
+
+         List<Disease> AllDisease = new List<Disease> {};
+         while(rdr.Read())
+         {
+           int id = rdr.GetInt32(0);
+           string name = rdr.GetString(1);
+           string symtoms = rdr.GetString(2);
+           string image = rdr.GetString(3);
+           int category_id = rdr.GetInt32(4);
+           Disease newDisease = new Disease(name, symtoms, image, category_id, id);
+           AllDisease.Add(newDisease);
+         }
+         if (rdr != null)
+         {
+           rdr.Close();
+         }
+         if (conn != null)
+         {
+           conn.Close();
+         }
+         return AllDisease;
+        }
+
 
     public static void DeleteAll()
     {
