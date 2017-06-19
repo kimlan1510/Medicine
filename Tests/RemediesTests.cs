@@ -64,22 +64,22 @@ namespace Medicine
 
       Assert.Equal(testRemedy, foundRemedy);
     }
-    // [Fact]
-    // public void AddDisease_AddsDiseasesToRemedy_DiseaseList()
-    // {
-    //   Remedy testRemedy = new Remedy("Herbal", "descriptionHerbal", "sideEffectHerbal",  "website.com/photoOfRemedy.jpg", 1);
-    //   testRemedy.Save();
-    //
-    //   Disease testDisease = new Disease("cold", "running nose", "image1", 1);
-    //   testDisease.Save();
-    //
-    //   testRemedy.AddDisease(testDisease);
-    //
-    //   List<Disease> result = testRemedy.GetDisease();
-    //   List<Disease> testList = new List<Disease>{testDisease};
-    //
-    //   Assert.Equal(testList, result);
-    // }
+    [Fact]
+    public void AddDisease_AddsDiseasesToRemedy_DiseaseList()
+    {
+      Remedy testRemedy = new Remedy("Herbal", "descriptionHerbal", "sideEffectHerbal",  "website.com/photoOfRemedy.jpg", 1);
+      testRemedy.Save();
+
+      Disease testDisease = new Disease("cold", "running nose", "image1", 1);
+      testDisease.Save();
+
+      testRemedy.AddDisease(testDisease);
+
+      List<Disease> result = testRemedy.GetDisease();
+      List<Disease> testList = new List<Disease>{testDisease};
+
+      Assert.Equal(testList, result);
+    }
 
     [Fact]
     public void Test_ReturnsAllDiseases_DiseaseList()
@@ -100,6 +100,23 @@ namespace Medicine
       List<Disease> testList = new List<Disease> {testDisease1, testDisease2};
 
       Assert.Equal(testList, result);
+    }
+    [Fact]
+    public void Delete_DeletesRemedyAssociationsFromDataBase_RemedyList()
+    {
+      Disease testDisease = new Disease("cold", "running nose", "image1", 1);
+      testDisease.Save();
+
+      Remedy testRemedy = new Remedy("Herbal", "descriptionHerbal", "sideEffectHerbal",  "website.com/photoOfRemedy.jpg", 1);
+      testRemedy.Save();
+
+      testRemedy.AddDisease(testDisease);
+      testRemedy.Delete();
+
+      List<Remedy> result = testDisease.GetRemedy();
+      List<Remedy> test = new List<Remedy>{};
+
+      Assert.Equal(test, result);
     }
     public void Dispose()
     {

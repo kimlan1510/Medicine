@@ -190,9 +190,9 @@ namespace Medicine
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("DELETE FROM remedies WHERE id = @RemeidiesID; DELETE FROM diseases_remedies WHERE remedies_id = @RemediesId;", conn);
+      SqlCommand cmd = new SqlCommand("DELETE FROM remedies WHERE id = @RemeidiesId; DELETE FROM diseases_remedies WHERE remedies_id = @RemeidiesId;", conn);
       SqlParameter RemedyIdParameter = new SqlParameter();
-      RemedyIdParameter.ParameterName = "@RemeidiesID";
+      RemedyIdParameter.ParameterName = "@RemeidiesId";
       RemedyIdParameter.Value = this.GetId();
 
       cmd.Parameters.Add(RemedyIdParameter);
