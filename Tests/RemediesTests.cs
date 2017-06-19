@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 
 namespace Medicine
 {
-  [Collection("tester")]
+  [Collection("Medicine")]
   public class RemedyTest : IDisposable
   {
     public RemedyTest()
@@ -64,9 +64,47 @@ namespace Medicine
 
       Assert.Equal(testRemedy, foundRemedy);
     }
+    // [Fact]
+    // public void AddDisease_AddsDiseasesToRemedy_DiseaseList()
+    // {
+    //   Remedy testRemedy = new Remedy("Herbal", "descriptionHerbal", "sideEffectHerbal",  "website.com/photoOfRemedy.jpg", 1);
+    //   testRemedy.Save();
+    //
+    //   Disease testDisease = new Disease("cold", "running nose", "image1", 1);
+    //   testDisease.Save();
+    //
+    //   testRemedy.AddDisease(testDisease);
+    //
+    //   List<Disease> result = testRemedy.GetDisease();
+    //   List<Disease> testList = new List<Disease>{testDisease};
+    //
+    //   Assert.Equal(testList, result);
+    // }
+
+    [Fact]
+    public void Test_ReturnsAllDiseases_DiseaseList()
+    {
+      Remedy testRemedy = new Remedy("Herbal", "descriptionHerbal", "sideEffectHerbal",  "website.com/photoOfRemedy.jpg", 1);
+      testRemedy.Save();
+
+      Disease testDisease1 = new Disease("cold", "running nose", "image1", 1);
+      testDisease1.Save();
+
+      Disease testDisease2 = new Disease("flu", "sick", "image1", 2);
+      testDisease2.Save();
+
+      testRemedy.AddDisease(testDisease1);
+      testRemedy.AddDisease(testDisease2);
+
+      List<Disease> result = testRemedy.GetDisease();
+      List<Disease> testList = new List<Disease> {testDisease1, testDisease2};
+
+      Assert.Equal(testList, result);
+    }
     public void Dispose()
     {
       Remedy.DeleteAll();
+      Disease.DeleteAll();
     }
   }
 }

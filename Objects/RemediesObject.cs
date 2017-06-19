@@ -185,14 +185,6 @@ namespace Medicine
       return foundRemedy;
     }
 
-    public static void DeleteAll()
-    {
-      SqlConnection conn = DB.Connection();
-      conn.Open();
-      SqlCommand cmd = new SqlCommand("DELETE FROM remedies;", conn);
-      cmd.ExecuteNonQuery();
-      conn.Close();
-    }
     public void Delete()
     {
       SqlConnection conn = DB.Connection();
@@ -210,6 +202,76 @@ namespace Medicine
       {
         conn.Close();
       }
+    }
+    public void AddDisease(Disease newDisease)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("INSERT INTO diseases_remedies (diseases_id, remedies_id) VALUES (@DiseaseId, @RemedyId);", conn);
+      SqlParameter diseaseIdParameter = new SqlParameter();
+      diseaseIdParameter.ParameterName = "@DiseaseId";
+      diseaseIdParameter.Value = newDisease.GetId();
+      cmd.Parameters.Add(diseaseIdParameter);
+
+      SqlParameter remedyIdParameter = new SqlParameter();
+      remedyIdParameter.ParameterName = "@RemedyId";
+      remedyIdParameter.Value = this.GetId();
+      cmd.Parameters.Add(remedyIdParameter);
+
+      cmd.ExecuteNonQuery();
+
+      if (conn != null)
+      {
+        conn.Close();
+      }
+    }
+    public List<Disease> GetDisease()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT diseases.* FROM remedies JOIN diseases_remedies ON (remedies.id = diseases_remedies.remedies_id) JOIN diseases ON (diseases_remedies.diseases_id = diseases.id) WHERE remedies.id = @RemedyId;", conn);
+      SqlParameter remedyIdParameter = new SqlParameter();
+      remedyIdParameter.ParameterName = "@RemedyId";
+      remedyIdParameter.Value = this.GetId();
+
+      cmd.Parameters.Add(remedyIdParameter);
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      List<Disease> diseases = new List<Disease> {};
+
+      while(rdr.Read())
+      {
+        int id = rdr.GetInt32(0);
+        string name = rdr.GetString(1);
+        string symtoms = rdr.GetString(2);
+        string image = rdr.GetString(3);
+        int category_id = rdr.GetInt32(4);
+        Disease newDisease = new Disease(name, symtoms, image, category_id, id);
+        diseases.Add(newDisease);
+      }
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+      return diseases;
+    }
+
+
+
+    public static void DeleteAll()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+      SqlCommand cmd = new SqlCommand("DELETE FROM remedies;", conn);
+      cmd.ExecuteNonQuery();
+      conn.Close();
     }
   }
 }
