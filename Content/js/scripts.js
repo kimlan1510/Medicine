@@ -14,6 +14,9 @@ function randomQuote() {
 
 
 $(function() {
+  $(".hamburger").click(function(){
+    $(this).toggleClass("is-active");
+  });
   randomQuote();
 });
 

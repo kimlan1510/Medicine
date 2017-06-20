@@ -4,9 +4,8 @@
     <meta charset="utf-8">
     <title>Mortar &amp; Pestle</title>
     <meta charset="utf-8" name="viewport" content="width=device-width">
-    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
-    <link rel="stylesheet" href="../../css/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400i,700,700i,900,900i|Poiret+One" rel="stylesheet">
+    <link rel="stylesheet" href="../Content/css/main.css">
     <script src="https://use.fontawesome.com/15c1261548.js"></script>
   </head>
   <body>
@@ -19,15 +18,23 @@
     </div><!--End of Splash Div-->
     <div class="nav-bar"><!--Start of Nav-Bar Div-->
       <div class="logo">
-        <a href="#"><img src="" alt=""></a>
-        <h1>Mortar &amp; Pestle</h1>
+        <a href="../Views/search.html"><img src="" alt=""><h1>Mortar &amp; Pestle</h1></a>
       </div>
-        <ul class="nav-sections">
-        <li>Home</li>
-        <li>Remedies</li>
-        <li>Ailments</li>
-        <li>About Us</li>
-      </ul>
+      <div class="mainNavDropDown">
+        <ul class="links">
+          <li>Home</li>
+          <li>Remedies</li>
+          <li>Ailments</li>
+          <li>About Us</li>
+        </ul>
+      </div>
+
+        <div class="hamburger">
+          <span class="line"></span>
+          <span class="line"></span>
+          <span class="line"></span>
+        </div>
+
     </div><!--End of Nav-Bar Div-->
     <div class="start-page"><!--Start of Start Page Div-->
       <div class="about-box">
@@ -39,17 +46,17 @@
 
         </blockquote>
       </div>
-      <div class="search-box">
+      <!-- <div class="search-box">
         <label for="symptom">Search by Symptom</label>
         <input type="text" name="symptom" id="symptom">
         <br>
         <label for="ailment">Ailments</label>
 
         <!-- Dropdown Trigger -->
-        <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Drop Me!</a>
+        <!-- <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Drop Me!</a> -->
 
         <!-- Dropdown Structure -->
-        <ul id='dropdown1' class='dropdown-content'>
+        <!-- <ul id='dropdown1' class='dropdown-content'>
           <li><a href="#!">one</a></li>
           <li><a href="#!">two</a></li>
           <li class="divider"></li>
@@ -57,10 +64,9 @@
           <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
           <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
         </ul>
-      </div>
+      </div> --> -->
     </div><!--End of Start Page Div-->
-    <script src="../js/jquery-3.2.1.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
-    <script src="../js/scripts.js"></script>
+    <script src="../content/js/jquery-3.2.1.js"></script>
+    <script src="../content/js/scripts.js"></script>
   </body>
 </html>

@@ -2,7 +2,7 @@
 
 *:not(body):not(html) {
   box-sizing:border-box;
-  border:1px solid red;
+  // border:1px solid red;
 }
 
 .columns {
@@ -13,6 +13,10 @@
 
 html {
   box-sizing: border-box;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
 }
 
 *,
@@ -27,4 +31,18 @@ a {
 
 li {
   list-style-type: none;
+}
+
+.card-area {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+#page-header {
+  text-align: center;
+  margin-top: 120px;
+  margin-bottom: 40px;
+  font-family: 'Poiret One', cursive;
+  font-size: 3em;
 }
