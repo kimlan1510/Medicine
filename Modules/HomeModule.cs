@@ -250,6 +250,30 @@ namespace Medicine
         return View["admin.cshtml", model];
       };
 
+      Get["/admin/remedy/edit/{id}"] = parameter => {
+        Dictionary<string, object> model = new Dictionary<string, object>();
+        Remedy SelectedRemedy = Remedy.Find(parameter.id);
+        var AllCategoryRemedy = CategoryRemedy.GetAll();
+        model.Add("SelectedRemedy", SelectedRemedy);
+        model.Add("AllCategoryRemedy", AllCategoryRemedy);
+        return View["edit_remedy.cshtml", model];
+      };
+
+      Patch["/admin/remedy/edit/{id}"] = parameter => {
+        Remedy SelectedRemedy = Remedy.Find(parameter.id);
+        SelectedRemedy.Update(Request.Form["edit-name"], Request.Form["edit-description"], Request.Form["edit-sideEffect"], Request.Form["edit-image"], Request.Form["edit-category-id"]);
+        Dictionary<string, object> model = new Dictionary<string, object>();
+        List<CategoryDisease> AllCategoryDisease = CategoryDisease.GetAll();
+        List<CategoryRemedy> AllCategoryRemedy = CategoryRemedy.GetAll();
+        List<Disease> AllAilments = Disease.GetAll();
+        List<Remedy> AllRemedies = Remedy.GetAll();
+        model.Add("AllCategoryDisease", AllCategoryDisease);
+        model.Add("AllCategoryRemedy", AllCategoryRemedy);
+        model.Add("AllDiseases", AllAilments);
+        model.Add("AllRemedies", AllRemedies);
+        return View["admin.cshtml", model];
+      };
+
 
     }
   }
