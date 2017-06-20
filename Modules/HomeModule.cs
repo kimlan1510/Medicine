@@ -106,6 +106,28 @@ namespace Medicine
         return View["admin.cshtml", model];
       };
 
+      Post["/admin/addRemediesToDisease"] = _ => {
+        string disease_id = Request.Form["disease_id"];
+        Disease foundDisease = Disease.Find(int.Parse(disease_id));
+        string remedies = Request.Form["treatment"];
+        string[] remedyArray = remedies.Split(',');
+        foreach(string remedy_id in remedyArray)
+        {
+          Remedy foundRemedy = Remedy.Find(int.Parse(remedy_id));
+          foundDisease.AddRemedy(foundRemedy);
+        }
+        Dictionary<string, object> model = new Dictionary<string, object>();
+        List<CategoryDisease> AllCategoryDisease = CategoryDisease.GetAll();
+        List<CategoryRemedy> AllCategoryRemedy = CategoryRemedy.GetAll();
+        List<Disease> AllAilments = Disease.GetAll();
+        List<Remedy> AllRemedies = Remedy.GetAll();
+        model.Add("AllCategoryDisease", AllCategoryDisease);
+        model.Add("AllCategoryRemedy", AllCategoryRemedy);
+        model.Add("AllDiseases", AllAilments);
+        model.Add("AllRemedies", AllRemedies);
+        return View["admin.cshtml", model];
+      };
+
       Get["/admin/diseaseCategory/delete/{id}"] = parameters => {
         CategoryDisease category = CategoryDisease.Find(parameters.id);
         return View["category_disease_delete.cshtml", category];
@@ -274,27 +296,62 @@ namespace Medicine
         return View["admin.cshtml", model];
       };
 
-      Post["/admin/addRemediesToDisease"] = _ => {
-        string disease_id = Request.Form["disease_id"];
-        Disease foundDisease = Disease.Find(int.Parse(disease_id));
-        string remedies = Request.Form["treatment"];
-        string[] remedyArray = remedies.Split(',');
-        foreach(string remedy_id in remedyArray)
-        {
-          Remedy foundRemedy = Remedy.Find(int.Parse(remedy_id));
-          foundDisease.AddRemedy(foundRemedy);
-        }
-        Dictionary<string, object> model = new Dictionary<string, object>();
-        List<CategoryDisease> AllCategoryDisease = CategoryDisease.GetAll();
-        List<CategoryRemedy> AllCategoryRemedy = CategoryRemedy.GetAll();
-        List<Disease> AllAilments = Disease.GetAll();
-        List<Remedy> AllRemedies = Remedy.GetAll();
-        model.Add("AllCategoryDisease", AllCategoryDisease);
-        model.Add("AllCategoryRemedy", AllCategoryRemedy);
-        model.Add("AllDiseases", AllAilments);
-        model.Add("AllRemedies", AllRemedies);
-        return View["admin.cshtml", model];
+      Get["/ailments"] = _ => {
+        List<Disease> AllDiseases = Disease.GetAll();
+        return View["ailments.cshtml", AllDiseases];
       };
+
+      Get["/remedies"] = _ => {
+        List<Remedy> AllRemedies = Remedy.GetAll();
+        return View["remedies.cshtml", AllRemedies];
+      };
+
+      Get["/remedies/{id}"] = parameters => {
+        Remedy foundRemedy = Remedy.Find(parameters.id);
+        List<Disease> DiseaseList = foundRemedy.GetDisease();
+        Dictionary<string, object> model = new Dictionary<string, object>();
+        model.Add("foundRemedy", foundRemedy);
+        model.Add("DiseaseList", DiseaseList);
+        return View["remedy.cshtml", model];
+      };
+
+      Get["/ailments/{id}"] = parameters => {
+        Disease foundDisease = Disease.Find(parameters.id);
+        List<Remedy> RemedyList = foundDisease.GetRemedy();
+        Dictionary<string, object> model = new Dictionary<string, object>();
+        model.Add("foundDisease", foundDisease);
+        model.Add("remedyList", RemedyList);
+        return View["ailment.cshtml", model];
+      };
+
+      Get["/categoryRemedy"] = _ => {
+        List<CategoryRemedy> AllCategoryRemedy = CategoryRemedy.GetAll();
+        return View["categoryRemedy_all.cshtml", AllCategoryRemedy];
+      };
+
+      Get["/categoryRemedy/{id}"] = parameters => {
+        CategoryRemedy  foundCategoryRemedy = CategoryRemedy.Find(parameters.id);
+        List<Remedy> RemedyList = foundCategoryRemedy.GetRemedy();
+        Dictionary<string, object> model = new Dictionary<string, object>();
+        model.Add("foundCategoryRemedy", foundCategoryRemedy);
+        model.Add("RemedyList", RemedyList);
+        return View["category_remedy.cshtml", model];
+      };
+
+      Get["/categoryDisease"] = _ => {
+        List<CategoryDisease> AllCategoryDisease = CategoryDisease.GetAll();
+        return View["categoryDisease_all.cshtml", AllCategoryDisease];
+      };
+
+      Get["/categoryDisease/{id}"] = parameters => {
+        CategoryDisease foundCategoryDisease = CategoryDisease.Find(parameters.id);
+        List<Disease> DiseaseList = foundCategoryDisease.GetDisease();
+        Dictionary<string, object> model = new Dictionary<string, object>();
+        model.Add("foundCategoryDisease", foundCategoryDisease);
+        model.Add("DiseaseList", DiseaseList);
+        return View["category_disease.cshtml", model];
+      };
+
 
 
     }
