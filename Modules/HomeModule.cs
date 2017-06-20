@@ -34,10 +34,15 @@ namespace Medicine
         return View["admin.cshtml", model];
       };
       Post["/admin"] = _ =>{
-        if(Request.Form["remedy-name"] = null || Request.Form["remedy-description"] = null || Request.Form["remedy-side-effect"] = null || Request.Form["remedy-category"] = null)
-
-          Request.Form["remedy-image"] = "No Image Available";  
-          //display alert box
+        string name = Request.Form["remedy-name"];
+        string description = Request.Form["remedy-description"];
+        string side_effect = Request.Form["remedy-side-effect"];
+        string image = Request.Form["remedy-image"];
+        int category_id = int.Parse(Request.Form["remedy-category-id"]);
+        if(name == null || description == null || side_effect == null)
+        {
+          Response.Write("<script>alert('You need to fill in the form.');</script>");
+        }
         }
 
 
