@@ -274,6 +274,28 @@ namespace Medicine
         return View["admin.cshtml", model];
       };
 
+      Post["/admin/addRemediesToDisease"] = _ => {
+        string disease_id = Request.Form["disease_id"];
+        Disease foundDisease = Disease.Find(int.Parse(disease_id));
+        string remedies = Request.Form["treatment"];
+        string[] remedyArray = remedies.Split(',');
+        foreach(string remedy_id in remedyArray)
+        {
+          Remedy foundRemedy = Remedy.Find(int.Parse(remedy_id));
+          foundDisease.AddRemedy(foundRemedy);
+        }
+        Dictionary<string, object> model = new Dictionary<string, object>();
+        List<CategoryDisease> AllCategoryDisease = CategoryDisease.GetAll();
+        List<CategoryRemedy> AllCategoryRemedy = CategoryRemedy.GetAll();
+        List<Disease> AllAilments = Disease.GetAll();
+        List<Remedy> AllRemedies = Remedy.GetAll();
+        model.Add("AllCategoryDisease", AllCategoryDisease);
+        model.Add("AllCategoryRemedy", AllCategoryRemedy);
+        model.Add("AllDiseases", AllAilments);
+        model.Add("AllRemedies", AllRemedies);
+        return View["admin.cshtml", model];
+      };
+
 
     }
   }

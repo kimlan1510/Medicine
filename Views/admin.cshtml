@@ -63,6 +63,24 @@
   <button type="submit">Submit</button>
 </form>
 
+<h3>Add remedies to diseases</h3>
+<form action="/admin/addRemediesToDisease" method="post">
+  <label for="treatment">remedies needed</label>
+  <br>
+  @foreach (var remedy in @Model["AllRemedies"])
+  {
+    <input type="checkbox" name="treatment" value="@remedy.GetId()">@remedy.GetName()<br>
+  }
+  <label for="disease">Category</label>
+  <select name="disease_id">
+    @foreach (var disease in @Model["AllDiseases"])
+    {
+      <option value="@disease.GetId()">@disease.GetName()</option>
+    }
+  </select>
+  <button type="submit" name="button">submit</button>
+</form>
+
 <h3>All disease categories</h3>
 @if(@Model["AllCategoryDisease"].Count != 0)
 {
@@ -72,6 +90,8 @@
     </li>
   }
 }
+
+
 
 <h3>All remedy categories</h3>
 @if(@Model["AllCategoryRemedy"].Count != 0)
@@ -103,6 +123,8 @@
     </li>
   }
 }
+
+
 
 </body>
 </html>
