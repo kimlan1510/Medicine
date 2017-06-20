@@ -14,7 +14,8 @@
   "frameworks": {
     "dnx451": {
       "frameworkAssemblies": {
-        "System.Data": "4.0.0.0"
+        "System.Data": "4.0.0.0",
+        "System.Windows.Forms": {}
       }
     }
   }

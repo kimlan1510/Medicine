@@ -1,0 +1,20 @@
+<form id="DiseaseUpdateForm" action="/admin/disease/edit/@Model["SelectedDisease"].GetId()" method="post">
+
+  <input type="hidden" name="_method" value="PATCH">
+  <input name="disease-id" type="hidden" value="@Model["SelectedDisease"].GetId()">
+
+  <label for="edit-name">Name</label>
+  <input type="text" name="edit-name" >
+  <label for="edit-symptom">symptom</label>
+  <input type="text" name="edit-symptom" >
+  <label for="edit-image">URL</label>
+  <input type="text" name="edit-image" >
+  <label for="edit-category-id">Category</label>
+  <select name="edit-category-id">
+    @foreach (var category in @Model["AllCategoryDisease"])
+    {
+      <option value="@category.GetId()">@category.GetName()</option>
+    }
+  </select>
+  <button type="submit">Submit</button>
+</form>
