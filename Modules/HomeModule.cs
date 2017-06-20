@@ -105,6 +105,87 @@ namespace Medicine
         model.Add("AllRemedies", AllRemedies);
         return View["admin.cshtml", model];
       };
+
+      Get["/admin/diseaseCategory/delete/{id}"] = parameters => {
+        CategoryDisease category = CategoryDisease.Find(parameters.id);
+        return View["category_disease_delete.cshtml", category];
+      };
+
+      Delete["/admin/diseaseCategory/delete/{id}"] = parameters => {
+        CategoryDisease chosenCategoryDisease = CategoryDisease.Find(parameters.id);
+        chosenCategoryDisease.Delete();
+        Dictionary<string, object> model = new Dictionary<string, object>();
+        List<CategoryDisease> AllCategoryDisease = CategoryDisease.GetAll();
+        List<CategoryRemedy> AllCategoryRemedy = CategoryRemedy.GetAll();
+        List<Disease> AllAilments = Disease.GetAll();
+        List<Remedy> AllRemedies = Remedy.GetAll();
+        model.Add("AllCategoryDisease", AllCategoryDisease);
+        model.Add("AllCategoryRemedy", AllCategoryRemedy);
+        model.Add("AllDiseases", AllAilments);
+        model.Add("AllRemedies", AllRemedies);
+        return View["admin.cshtml", model];
+      };
+
+      Get["/admin/remedyCategory/delete/{id}"] = parameters => {
+        CategoryRemedy category = CategoryRemedy.Find(parameters.id);
+        return View["category_remedy_delete.cshtml", category];
+      };
+
+      Delete["/admin/remedyCategory/delete/{id}"] = parameters => {
+        CategoryRemedy chosenCategoryRemedy = CategoryRemedy.Find(parameters.id);
+        chosenCategoryRemedy.Delete();
+        Dictionary<string, object> model = new Dictionary<string, object>();
+        List<CategoryDisease> AllCategoryDisease = CategoryDisease.GetAll();
+        List<CategoryRemedy> AllCategoryRemedy = CategoryRemedy.GetAll();
+        List<Disease> AllAilments = Disease.GetAll();
+        List<Remedy> AllRemedies = Remedy.GetAll();
+        model.Add("AllCategoryDisease", AllCategoryDisease);
+        model.Add("AllCategoryRemedy", AllCategoryRemedy);
+        model.Add("AllDiseases", AllAilments);
+        model.Add("AllRemedies", AllRemedies);
+        return View["admin.cshtml", model];
+      };
+
+      Get["/admin/remedy/delete/{id}"] = parameters => {
+        Remedy chosen = Remedy.Find(parameters.id);
+        return View["remedy_delete.cshtml", chosen];
+      };
+
+      Delete["/admin/remedy/delete/{id}"] = parameters => {
+        Remedy chosenRemedy = Remedy.Find(parameters.id);
+        chosenRemedy.Delete();
+        Dictionary<string, object> model = new Dictionary<string, object>();
+        List<CategoryDisease> AllCategoryDisease = CategoryDisease.GetAll();
+        List<CategoryRemedy> AllCategoryRemedy = CategoryRemedy.GetAll();
+        List<Disease> AllAilments = Disease.GetAll();
+        List<Remedy> AllRemedies = Remedy.GetAll();
+        model.Add("AllCategoryDisease", AllCategoryDisease);
+        model.Add("AllCategoryRemedy", AllCategoryRemedy);
+        model.Add("AllDiseases", AllAilments);
+        model.Add("AllRemedies", AllRemedies);
+        return View["admin.cshtml", model];
+      };
+
+      Get["/admin/disease/delete/{id}"] = parameters => {
+        Disease chosen = Disease.Find(parameters.id);
+        return View["disease_delete.cshtml", chosen];
+      };
+
+      Delete["/admin/disease/delete/{id}"] = parameters => {
+        Disease chosenDisease = Disease.Find(parameters.id);
+        chosenDisease.Delete();
+        Dictionary<string, object> model = new Dictionary<string, object>();
+        List<CategoryDisease> AllCategoryDisease = CategoryDisease.GetAll();
+        List<CategoryRemedy> AllCategoryRemedy = CategoryRemedy.GetAll();
+        List<Disease> AllAilments = Disease.GetAll();
+        List<Remedy> AllRemedies = Remedy.GetAll();
+        model.Add("AllCategoryDisease", AllCategoryDisease);
+        model.Add("AllCategoryRemedy", AllCategoryRemedy);
+        model.Add("AllDiseases", AllAilments);
+        model.Add("AllRemedies", AllRemedies);
+        return View["admin.cshtml", model];
+      };
+
     }
   }
 }
