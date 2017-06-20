@@ -186,6 +186,71 @@ namespace Medicine
         return View["admin.cshtml", model];
       };
 
+      Get["/admin/diseaseCategory/edit/{id}"] = parameter => {
+        CategoryDisease SelectedCategoryDisease = CategoryDisease.Find(parameter.id);
+        return View["edit_category_disease.cshtml", SelectedCategoryDisease];
+      };
+
+      Patch["/admin/diseaseCategory/edit/{id}"] = parameter => {
+        CategoryDisease SelectedCategoryDisease = CategoryDisease.Find(parameter.id);
+        SelectedCategoryDisease.Update(Request.Form["edit-name"]);
+        Dictionary<string, object> model = new Dictionary<string, object>();
+        List<CategoryDisease> AllCategoryDisease = CategoryDisease.GetAll();
+        List<CategoryRemedy> AllCategoryRemedy = CategoryRemedy.GetAll();
+        List<Disease> AllAilments = Disease.GetAll();
+        List<Remedy> AllRemedies = Remedy.GetAll();
+        model.Add("AllCategoryDisease", AllCategoryDisease);
+        model.Add("AllCategoryRemedy", AllCategoryRemedy);
+        model.Add("AllDiseases", AllAilments);
+        model.Add("AllRemedies", AllRemedies);
+        return View["admin.cshtml", model];
+      };
+
+      Get["/admin/remedyCategory/edit/{id}"] = parameter => {
+        CategoryRemedy SelectedCategoryRemedy = CategoryRemedy.Find(parameter.id);
+        return View["edit_category_remedy.cshtml", SelectedCategoryRemedy];
+      };
+
+      Patch["/admin/remedyCategory/edit/{id}"] = parameter => {
+        CategoryRemedy SelectedCategoryRemedy = CategoryRemedy.Find(parameter.id);
+        SelectedCategoryRemedy.Update(Request.Form["edit-name"]);
+        Dictionary<string, object> model = new Dictionary<string, object>();
+        List<CategoryDisease> AllCategoryDisease = CategoryDisease.GetAll();
+        List<CategoryRemedy> AllCategoryRemedy = CategoryRemedy.GetAll();
+        List<Disease> AllAilments = Disease.GetAll();
+        List<Remedy> AllRemedies = Remedy.GetAll();
+        model.Add("AllCategoryDisease", AllCategoryDisease);
+        model.Add("AllCategoryRemedy", AllCategoryRemedy);
+        model.Add("AllDiseases", AllAilments);
+        model.Add("AllRemedies", AllRemedies);
+        return View["admin.cshtml", model];
+      };
+
+      Get["/admin/disease/edit/{id}"] = parameter => {
+        Dictionary<string, object> model = new Dictionary<string, object>();
+        Disease SelectedDisease = Disease.Find(parameter.id);
+        var AllCategoryDisease = CategoryDisease.GetAll();
+        model.Add("SelectedDisease", SelectedDisease);
+        model.Add("AllCategoryDisease", AllCategoryDisease);
+        return View["edit_disease.cshtml", model];
+      };
+
+      Patch["/admin/disease/edit/{id}"] = parameter => {
+        Disease SelectedDisease = Disease.Find(parameter.id);
+        SelectedDisease.Update(Request.Form["edit-name"], Request.Form["edit-symptom"], Request.Form["edit-image"], Request.Form["edit-category-id"]);
+        Dictionary<string, object> model = new Dictionary<string, object>();
+        List<CategoryDisease> AllCategoryDisease = CategoryDisease.GetAll();
+        List<CategoryRemedy> AllCategoryRemedy = CategoryRemedy.GetAll();
+        List<Disease> AllAilments = Disease.GetAll();
+        List<Remedy> AllRemedies = Remedy.GetAll();
+        model.Add("AllCategoryDisease", AllCategoryDisease);
+        model.Add("AllCategoryRemedy", AllCategoryRemedy);
+        model.Add("AllDiseases", AllAilments);
+        model.Add("AllRemedies", AllRemedies);
+        return View["admin.cshtml", model];
+      };
+
+
     }
   }
 }
