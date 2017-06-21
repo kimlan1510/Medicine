@@ -352,6 +352,35 @@ namespace Medicine
         return View["category_disease.cshtml", model];
       };
 
+      Get["/search"] = _ => {
+        Dictionary<string, object> model = new Dictionary<string, object>();
+        List<Remedy> remedies = new List<Remedy>{};
+        List<Disease> diseases = new List<Disease>{};
+        model.Add("remedies", remedies);
+        model.Add("diseases", diseases);
+        return View["search.cshtml", model];
+      };
+
+      Post["/search"] = _ => {
+        List<Remedy> remedies = new List<Remedy>{};
+        List<Disease> diseases = new List<Disease>{};
+        Dictionary<string, object> model = new Dictionary<string, object>();
+        string searchString = Request.Form["search-field"];
+        string category = Request.Form["category"];
+        if (category == "Remedy")
+        {
+          remedies = Remedy.SearchRemedy(searchString);
+
+        }
+        else if (category == "Disease")
+        {
+          diseases = Disease.SearchDisease(searchString);
+        }
+        model.Add("remedies", remedies);
+        model.Add("diseases", diseases);
+        return View["search.cshtml", model];
+      };
+
 
 
     }
