@@ -44,9 +44,20 @@ li {
   margin-top: 10vh;
 }
 
+#header-wrapper {
+  display: flex;
+  height: 20px;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 230px;
+}
+
 #card-area-header {
-  text-align: center;
-  margin-top: 40vh;
+  // text-align: center;
+  // margin-top: 40vh;
   font-family: 'Poiret One', cursive;
   font-size: 3em;
+  margin: auto;
+  top: 25vh;
 }
