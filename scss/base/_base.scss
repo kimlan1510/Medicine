@@ -41,7 +41,7 @@ li {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  margin-top: 10vh;
+  margin-top: 15vh;
 }
 
 #header-wrapper {
@@ -50,12 +50,12 @@ li {
   width: 100%;
   position: fixed;
   z-index: 1;
-  top: 230px;
+  top: 175px;
 }
 
 #card-area-header {
   font-family: 'Poiret One', cursive;
   font-size: 3em;
-  margin: auto;
-  top: 25vh;
+  margin: 0 auto;
+  top: 20vh;
 }
