@@ -649,24 +649,41 @@ img {
 
 .remedy-image {
   margin: 50px; }
+  .remedy-image img {
+    width: 300px;
+    height: 300px; }
+  @media (min-width: 480px) {
+    .remedy-image {
+      margin-left: 100px; } }
 
 .general-info {
-  margin-left: 20px;
+  margin-left: 70px;
   text-align: center; }
 
 .ail-effects {
   display: flex;
-  align-items: space-around;
+  justify-content: space-around;
   padding: 10px; }
+  @media (min-width: 480px) {
+    .ail-effects {
+      justify-content: space-between;
+      margin: auto; } }
 
-.side-effects ul {
+.side-effects p {
   padding-left: 12px; }
-  .side-effects ul i {
+  .side-effects p i {
     margin-right: 5px; }
+@media (min-width: 480px) {
+  .side-effects {
+    margin-right: 30px; } }
 
 .ailment {
   width: 100px;
   height: 100px; }
+  @media (min-width: 480px) {
+    .ailment {
+      width: 200px;
+      height: 200px; } }
 
 .side-effects h3 {
   text-align: center;
