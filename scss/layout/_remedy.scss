@@ -9,13 +9,17 @@
 
 .remedy-image {
   margin: 50px;
+  img {
+  width: 300px;
+  height: 300px;
+  }
   @include respond-to('small') {
       margin-left: 100px;
   }
 }
 
 .general-info {
-  margin-left: 20px;
+  margin-left: 70px;
   text-align: center;
 }
 
@@ -29,7 +33,7 @@
   }
 }
 .side-effects {
-  ul {
+  p {
   padding-left: 12px;
   i {
     margin-right: 5px;
