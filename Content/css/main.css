@@ -525,9 +525,6 @@ a {
 li {
   list-style-type: none; }
 
-.container {
-  height: 100vh; }
-
 .card-area {
   display: flex;
   flex-wrap: wrap;
@@ -639,6 +636,9 @@ li {
   flex-direction: column; }
   .container h1 {
     text-align: center; }
+
+img {
+  display: block; }
 
 .container {
   margin-top: 100px;
