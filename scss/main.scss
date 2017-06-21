@@ -1,9 +1,18 @@
 @import
+'vendors/normalize',
+'vendors/bourbon/bourbon',
+'vendors/neat/neat';
+
+@import
 'abstracts/mixins',
 'abstracts/variables',
 'abstracts/keyframes',
 'abstracts/placeholders',
 'abstracts/functions';
+
+@import
+'components/card',
+'components/hamburger';
 
 @import
 'base/typography',
@@ -15,10 +24,7 @@
 'layout/search',
 'layout/ailments',
 'layout/remedies',
+'layout/ailment',
+'layout/remedy',
 'layout/about-us',
 'layout/footer';
-
-@import
-'vendors/normalize',
-'vendors/bourbon/bourbon',
-'vendors/neat/neat';

@@ -1,10 +1,72 @@
-.nav-bar {
-  display: flex;
-  justify-content: space-between;
+
+
+.mainNavDropDown {
+  display: none;
+  top: 1px;
+  width: 90%;
+  margin: 0;
+  position: absolute;
+  .links{
+    a {
+      color: black;
+      &:hover {
+        color: $hover-color;
+      }
+    }
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.9);
+    li{
+      text-align: center;
+      padding: 5px 0;
+    }
+
+  }
+
+  @include respond-to('small') {
+    display: flex;
+    position: relative;
+    width: auto;
+    .links {
+      background: none;
+      flex-direction: row;
+      a {
+        margin-left: 2em;
+        margin-right: 1em;
+      }
+    }
+
+  }
 }
-.nav-sections {
+
+.nav-bar {
+  padding: 15px;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  height: 80px;
+  width: 100vw;
+  background-color: #fff;
   display: flex;
-  li {
-    margin: auto;
+
+  .logo {
+    width: 100px;
+    h1 {
+      margin: 0;
+      font-size: 1.5em;
+      color: $brand-color;
+      &:hover {
+        color: $hover-color;
+      }
+      @include respond-to('large') {
+        width: 200px;
+        font-size: 3em;
+      }
+    }
+  }
+  @include respond-to('small') {
+    padding: 5vw;
+    height: auto;
   }
 }
