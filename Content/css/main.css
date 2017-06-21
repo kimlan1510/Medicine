@@ -640,18 +640,39 @@ li {
   .container h1 {
     text-align: center; }
 
+.container {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column; }
+  .container h1 {
+    text-align: center; }
+
 .remedy-image {
   margin: 50px; }
 
 .general-info {
-  margin: 50px;
+  margin-left: 20px;
   text-align: center; }
 
 .ail-effects {
   display: flex;
-  justify-content: space-around; }
+  align-items: space-around;
+  padding: 10px; }
 
-.ailment, .side-effects h3 {
-  text-align: center; }
+.side-effects ul {
+  padding-left: 12px; }
+  .side-effects ul i {
+    margin-right: 5px; }
+
+.ailment {
+  width: 100px;
+  height: 100px; }
+
+.side-effects h3 {
+  text-align: center;
+  margin-right: 20px; }
+
+.ailment h3 {
+  margin-left: 100px; }
 
 /*# sourceMappingURL=main.css.map */
