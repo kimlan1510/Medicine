@@ -33,20 +33,25 @@
 
       </div><!--End of Nav-Bar Div-->
       <h1 id="card-area-header">Remedies</h1>
-      <div class="card-area">
-        <div class="card">
-          <img src="../Content/img/remedy-image1.jpg" alt="remedy card" />
-          <div class="info">
-            <div class="details-title">
-              <span>Remedy Name</span>
+      @if(@Model.Count !=0)
+      {
+        <div class="card-area">
+          @foreach(var remedy in Model)
+          {
+            <div class="card">
+              <img src="@remedy.GetImage()" alt="image of @remedy.GetName()" />
+              <div class="info">
+                <div class="details-title">
+                  <span>@remedy.GetName()</span>
+                </div>
+                <div class="details-body">
+                  <p>@remedy.GetDescription()</p>
+                </div>
+              </div>
             </div>
-            <div class="details-body">
-              <p>Gochujang whatever bespoke, sriracha chia celiac polaroid edison bulb biodiesel PBR&B flexitarian slow-carb </p>
-            </div>
-          </div>
+          }
         </div>
-
-      </div>
+      }
     </div>
   <script src="../content/js/jquery-3.2.1.js"></script>
   <script src="../content/js/scripts.js"></script>
