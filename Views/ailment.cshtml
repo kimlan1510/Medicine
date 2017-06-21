@@ -1,51 +1,17 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Mortar &amp; Pestle</title>
-    <meta charset="utf-8" name="viewport" content="width=device-width">
-    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400i,700,700i,900,900i|Poiret+One" rel="stylesheet">
-    <link rel="stylesheet" href="../Content/css/main.css">
-    <script src="https://use.fontawesome.com/15c1261548.js"></script>
-  </head>
-  <body>
-    <div class="nav-bar"><!--Start of Nav-Bar Div-->
-      <div class="logo">
-        <a href="../Views/search.html"><img src="" alt=""><h1>Mortar &amp; Pestle</h1></a>
-      </div>
-      <div class="mainNavDropDown">
-        <ul class="links">
-          <a href="#"><li>Home</li></a>
-          <a href="/remedies"><li>Remedies</li></a>
-          <a href="/ailments"><li>Ailments</li></a>
-          <a href="#"><li>About Us</li></a>
-        </ul>
-      </div>
-
-        <div class="hamburger">
-          <span class="line"></span>
-          <span class="line"></span>
-          <span class="line"></span>
-        </div>
-
-    </div><!--End of Nav-Bar Div-->
-    <div class="container">
-      <h1>@Model["foundDisease"].GetName()</h1>
-      <div class="ailment-info">
-        <p>@Model["foundDisease"].GetSymtoms()</p>
-      </div>
-      <div class="drugstore-remedy">
-        <h2>Over the Counter Name</h2>
-        <img src="../Content/img/over-the-counter.jpg" alt="Drug Store Remedy" />
-        <p>Pok pok selfies iPhone pabst, pour-over single-origin coffee before they sold out scenester jean shorts snackwave put a bird on it mixtape. Authentic lo-fi brooklyn, tofu farm-to-table cliche chartreuse vexillologist mustache hella. Air plant shoreditch VHS, lomo fingerstache poke XOXO literally authentic single-origin coffee butcher banh mi 3 wolf moon.</p>
-      </div>
-      <div class="home-remedy">
-        <h2>Herbal Remedy Name</h2>
-        <img src="../Content/img/herbal-remedy.jpg" alt="Herbal Remedy" />
-        <p>Yr selfies aesthetic taiyaki, godard paleo banh mi cardigan next level yuccie. Listicle raclette ethical, banh mi swag enamel pin truffaut cliche shaman subway tile dreamcatcher direct trade sustainable paleo. Squid distillery kickstarter, small batch cloud bread wolf pour-over.</p>
-      </div>
-    </div>
-    <script src="../Content/js/jquery-3.2.1.js"></script>
-    <script src="../Content/js/scripts.js"></script>
-  </body>
-</html>
+@{
+  Layout="Shared/_Layout.cshtml";
+}
+  <h1>@Model["foundDisease"].GetName()</h1>
+  <div class="ailment-info">
+    <p>@Model["foundDisease"].GetSymtoms()</p>
+  </div>
+  <div class="drugstore-remedy">
+    <h2>Over the Counter Name</h2>
+    <img src="../Content/img/over-the-counter.jpg" alt="Drug Store Remedy" />
+    <p>Pok pok selfies iPhone pabst, pour-over single-origin coffee before they sold out scenester jean shorts snackwave put a bird on it mixtape. Authentic lo-fi brooklyn, tofu farm-to-table cliche chartreuse vexillologist mustache hella. Air plant shoreditch VHS, lomo fingerstache poke XOXO literally authentic single-origin coffee butcher banh mi 3 wolf moon.</p>
+  </div>
+  <div class="home-remedy">
+    <h2>Herbal Remedy Name</h2>
+    <img src="../Content/img/herbal-remedy.jpg" alt="Herbal Remedy" />
+    <p>Yr selfies aesthetic taiyaki, godard paleo banh mi cardigan next level yuccie. Listicle raclette ethical, banh mi swag enamel pin truffaut cliche shaman subway tile dreamcatcher direct trade sustainable paleo. Squid distillery kickstarter, small batch cloud bread wolf pour-over.</p>
+  </div>
