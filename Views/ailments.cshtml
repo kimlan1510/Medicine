@@ -33,20 +33,26 @@
 
       </div><!--End of Nav-Bar Div-->
       <h1 id="card-area-header">Ailments</h1>
-      <div class="card-area">
-        <div class="card">
-          <img src="../Content/img/remedy-image1.jpg" alt="ailment card" />
-          <div class="info">
-            <div class="details-title">
-              <span>Ailment Name</span>
+      @if(@Model.Count != 0)
+      {
+        <div class="card-area">
+          @foreach(var ailment in Model)
+          {
+            <div class="card">
+              <img src="@ailment.GetImage()" alt="ailment card" />
+              <div class="info">
+                <div class="details-title">
+                  <span>@ailment.GetName()</span>
+                </div>
+                <div class="details-body">
+                  <p>@ailment.GetSymtoms()</p>
+                </div>
+              </div>
             </div>
-            <div class="details-body">
-              <p>Gochujang whatever bespoke, sriracha chia celiac polaroid edison bulb biodiesel PBR&B flexitarian slow-carb asymmetrical XOXO. Crucifix lomo twee, viral roof party taiyaki poke vinyl brunch bicycle rights. Vegan kickstarter poke tofu deep v, skateboard whatever banh mi crucifix pickled hammock.</p>
-            </div>
-          </div>
-        </div>
+          }
 
-      </div>
+        </div>
+      }
     </div>
   <script src="../content/js/jquery-3.2.1.js"></script>
   <script src="../content/js/scripts.js"></script>
