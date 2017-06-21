@@ -1,0 +1,24 @@
+.container {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  h1 {
+    text-align: center;
+  }
+}
+
+.remedy-image {
+  margin: 50px;
+}
+.general-info {
+  margin: 50px;
+  text-align: center;
+}
+
+.ail-effects {
+  display: flex;
+  justify-content: space-around;
+}
+.ailment, .side-effects h3{
+  text-align: center;
+}
