@@ -15,10 +15,10 @@
       </div>
       <div class="mainNavDropDown">
         <ul class="links">
-          <li>Home</li>
-          <li>Remedies</li>
-          <li>Ailments</li>
-          <li>About Us</li>
+          <a href="#"><li>Home</li></a>
+          <a href="/remedies"><li>Remedies</li></a>
+          <a href="/ailments"><li>Ailments</li></a>
+          <a href="#"><li>About Us</li></a>
         </ul>
       </div>
 
@@ -29,10 +29,10 @@
         </div>
 
     </div><!--End of Nav-Bar Div-->
-    <!-- <div class="container"> -->
-      <h1>Ailment Name</h1>
+    <div class="container">
+      <h1>@Model["foundDisease"].GetName()</h1>
       <div class="ailment-info">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+        <p>@Model["foundDisease"].GetSymtoms()</p>
       </div>
       <div class="drugstore-remedy">
         <h2>Over the Counter Name</h2>
@@ -44,7 +44,7 @@
         <img src="../Content/img/herbal-remedy.jpg" alt="Herbal Remedy" />
         <p>Yr selfies aesthetic taiyaki, godard paleo banh mi cardigan next level yuccie. Listicle raclette ethical, banh mi swag enamel pin truffaut cliche shaman subway tile dreamcatcher direct trade sustainable paleo. Squid distillery kickstarter, small batch cloud bread wolf pour-over.</p>
       </div>
-    <!-- </div> -->
+    </div>
     <script src="../Content/js/jquery-3.2.1.js"></script>
     <script src="../Content/js/scripts.js"></script>
   </body>
