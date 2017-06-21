@@ -2,7 +2,7 @@
 
 *:not(body):not(html) {
   box-sizing:border-box;
-  border:1px solid red;
+  // border:1px solid red;
 }
 
 .columns {
@@ -21,10 +21,32 @@ html {
   box-sizing: inherit;
 }
 
+body {
+  font-family: 'Lato', sans-serif;
+}
+
 a {
   text-decoration: none;
 }
 
 li {
   list-style-type: none;
+}
+
+.container{
+  height: 100vh;
+}
+
+.card-area {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 10vh;
+}
+
+#card-area-header {
+  text-align: center;
+  margin-top: 40vh;
+  font-family: 'Poiret One', cursive;
+  font-size: 3em;
 }

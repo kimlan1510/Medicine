@@ -1,0 +1,10 @@
+$brand-color: #3A5F0B;
+
+$hover-color: #34a203;
+
+$breakpoints: (
+  'small': (min-width: 480px),
+  'medium': (min-width: 760px),
+  'large': (min-width: 960px),
+  'x-large': (min-width: 1470px)
+);

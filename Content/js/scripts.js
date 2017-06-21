@@ -14,6 +14,10 @@ function randomQuote() {
 
 
 $(function() {
+  $(".hamburger").click(function(){
+    $(this).toggleClass("is-active");
+    $(".mainNavDropDown").toggle(1000);
+  });
   randomQuote();
 });
 
