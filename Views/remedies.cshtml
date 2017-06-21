@@ -19,8 +19,8 @@
         <div class="mainNavDropDown">
           <ul class="links">
             <a href="#"><li>Home</li></a>
-            <a href="#"><li>Remedies</li></a>
-            <a href="#"><li>Ailments</li></a>
+            <a href="/remedies"><li>Remedies</li></a>
+            <a href="/ailments"><li>Ailments</li></a>
             <a href="#"><li>About Us</li></a>
           </ul>
         </div>
@@ -38,6 +38,7 @@
         <div class="card-area">
           @foreach(var remedy in Model)
           {
+            <a href="/remedies/@remedy.GetId()">
             <div class="card">
               <img src="@remedy.GetImage()" alt="image of @remedy.GetName()" />
               <div class="info">
@@ -49,6 +50,7 @@
                 </div>
               </div>
             </div>
+            </a>
           }
         </div>
       }
