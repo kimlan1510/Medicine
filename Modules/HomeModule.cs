@@ -365,7 +365,7 @@ namespace Medicine
         List<Disease> diseases = new List<Disease>{};
         model.Add("remedies", remedies);
         model.Add("diseases", diseases);
-        return View["searchEngine.cshtml", model];
+        return View["search.cshtml", model];
       };
 
       Post["/search"] = _ => {
@@ -385,7 +385,7 @@ namespace Medicine
         }
         model.Add("remedies", remedies);
         model.Add("diseases", diseases);
-        return View["searchEngine.cshtml", model];
+        return View["search.cshtml", model];
       };
 
 
