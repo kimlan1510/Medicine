@@ -1,5 +1,7 @@
-#home {
-  // overflow: hidden;
+.mortar {
+  display: block;
+  width: 15vw;
+  margin: auto;
 }
 
 .disclaimer {
@@ -16,7 +18,7 @@
 
 .main-content {
   display: flex;
-  margin: 25vh 8vw 0 8vw;
+  margin: 22vh 8vw 0 8vw;
   flex-wrap: wrap;
   flex-direction: column;
   .about-site {
@@ -31,17 +33,14 @@
     color: $hover-color;
   }
   @include respond-to('small') {
-    margin-top: 30vh;
     p {
       line-height: 1.8em;
       margin-top: 5vh;
     }
-  };
-  @include respond-to('large') {
-    margin-top: 40vh;
-
   }
+
 }
+
 
 .about-box {
   justify-content: center;
@@ -54,6 +53,11 @@
 
 .search {
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-around;
+}
+
+.admin {
+  text-align: right;
+  padding: 40px;
 }

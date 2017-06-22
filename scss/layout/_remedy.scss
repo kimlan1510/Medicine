@@ -1,3 +1,10 @@
+.single-remedy {
+  display: flex;
+  justify-content: space-around;
+  margin: 50px auto;
+  width: 600px;
+}
+
 .single-remedy-name {
   margin-top: 100px;
   @include respond-to('x-large') {
@@ -54,11 +61,4 @@
 }
 .ailment h3{
   margin-left: 100px;
-}
-
-.single-remedy {
-  display: flex;
-  justify-content: space-around;
-  margin: 50px auto;
-  width: 600px;
 }

@@ -1,9 +1,31 @@
 
-img {
-  display: block;
-}
 
 #remedies-for-single-ailment {
-  margin-top: 550px;
+  margin-top: 80px;
   margin-bottom: 30px;
+}
+.single-ailment {
+  display: flex;
+  justify-content: space-around;
+  margin: 50px auto;
+  width: 600px;
+}
+
+.single-ailment-name {
+  margin-top: 100px;
+  @include respond-to('x-large') {
+    margin-top: 160px;
+  }
+}
+
+.ailment-image {
+  img {
+  width: 300px;
+  height: 300px;
+  }
+}
+
+.ailment-info {
+  margin-left: 70px;
+  text-align: center;
 }

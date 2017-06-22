@@ -11,12 +11,12 @@ namespace Medicine
   {
     public HomeModule()
     {
-      // Get["/"] = _ => {
-      //   return View["index.cshtml"];
-      // };
       Get["/ailments"] = _ => {
         List<Disease> AllAilments = Disease.GetAll();
         return View["ailments.cshtml", AllAilments];
+      };
+      Get["/aboutUS"] = _ => {
+        return View["aboutUs.cshtml"];
       };
       Get["/remedies"] = _ => {
         List<Remedy> AllRemedies = Remedy.GetAll();

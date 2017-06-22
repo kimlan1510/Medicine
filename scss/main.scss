@@ -11,6 +11,7 @@
 'abstracts/functions';
 
 @import
+'components/formElements',
 'components/card',
 'components/hamburger';
 
@@ -19,12 +20,11 @@
 'base/base';
 
 @import
-'layout/splash',
 'layout/nav',
 'layout/search',
 'layout/ailments',
 'layout/remedies',
 'layout/ailment',
 'layout/remedy',
-'layout/about-us',
+'layout/about',
 'layout/footer';

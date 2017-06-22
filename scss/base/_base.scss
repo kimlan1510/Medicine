@@ -29,6 +29,10 @@ a {
   text-decoration: none;
 }
 
+a:hover {
+  color: $hover-color;
+}
+
 li {
   list-style-type: none;
 }
@@ -69,13 +73,10 @@ li {
   display: flex;
   height: 20px;
   width: 100%;
-  position: fixed;
-  z-index: 1;
-  top: 225px;
-  flex-direction: column;
   @include respond-to('large') {
     align-self: center;
   }
+  background-color: #fff;
 }
 
 #card-area-header {
@@ -83,6 +84,7 @@ li {
   font-size: 3em;
   margin: 0 auto;
   top: 30vh;
+
 }
 
 .ailment-info {

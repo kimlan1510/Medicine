@@ -1,14 +1,22 @@
 <div class="container">
+
 @{
   Layout="Shared/_Layout.cshtml";
 }
-<div id="header-wrapper">
-  <h1 id="card-area-header">@Model["foundDisease"].GetName()</h1>
-  <p class="ailment-info"><img src = "@Model["foundDisease"].GetImage()"></p>
-  <p class="ailment-info">@Model["foundDisease"].GetSymtoms()</p>
+<h1 class="single-ailment-name">@Model["foundDisease"].GetName()</h1>
 
-</div>
-<h1 id="remedies-for-single-ailment">Remedies for this Ailment</h1>
+  <div class="single-ailment">
+    <div class="ailment-image">
+      <img src = "@Model["foundDisease"].GetImage()">
+    </div>
+    <div class="ailment-info">
+      <p>@Model["foundDisease"].GetSymtoms()</p>
+    </div>
+  </div>
+
+
+<h1 id="remedies-for-single-ailment">Remedies for @Model["foundDisease"].GetName()</h1>
+
 @if(@Model["remedyList"].Count !=0)
 
 {

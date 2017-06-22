@@ -26,13 +26,11 @@ https://github.com/kimlan1510/Medicine
 
 ## MVP
 
-#### _Backend_
 * Admin is able to add new remedies to database.
 * Admin is able to add new ailments to database.
 * Admin is able to edit and delete remedies and ailments in database.
 * Users can see all remedies and ailments on the webpage.
 * Users can click on an image of a remedy or an ailment and that will take them to a webpage that show detail information about that remedy or ailment.
-#### _FrontEnd_
 
 
 ## Setup/Installation Requirements
