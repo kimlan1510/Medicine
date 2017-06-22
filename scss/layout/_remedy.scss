@@ -1,0 +1,61 @@
+.container {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  h1 {
+    text-align: center;
+  }
+}
+
+.remedy-image {
+  margin: 50px;
+  img {
+  width: 300px;
+  height: 300px;
+  }
+  @include respond-to('small') {
+      margin-left: 100px;
+  }
+}
+
+.general-info {
+  margin-left: 70px;
+  text-align: center;
+}
+
+.ail-effects {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  @include respond-to('small') {
+    justify-content: space-between;
+    margin: auto;
+  }
+}
+.side-effects {
+  p {
+  padding-left: 12px;
+  i {
+    margin-right: 5px;
+    }
+  }
+  @include respond-to('small') {
+    margin-right: 30px;
+  }
+}
+.ailment {
+  width: 100px;
+  height: 100px;
+  @include respond-to('small') {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+.side-effects h3{
+  text-align: center;
+  margin-right: 20px;
+}
+.ailment h3{
+  margin-left: 100px;
+}

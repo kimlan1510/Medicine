@@ -1,0 +1,37 @@
+@{
+  Layout="Shared/_Layout.cshtml";
+}
+<h1>@Model["foundRemedy"].GetName()</h1>
+<div class="remedy-image">
+  <img src="@Model["foundRemedy"].GetImage()" alt="remedy card" />
+</div>
+<div class="general-info">
+  <p>@Model["foundRemedy"].GetDescription()</p>
+</div>
+<div class="side-effects">
+  <h3>Side Effects</h3>
+    <p><i class="fa fa-heartbeat" aria-hidden="true"></i>@Model["foundRemedy"].GetSideEffect()</p>
+</div>
+
+<h1 id="card-area-header">@Model["foundRemedy"].GetName() can be used to alleviate these ailments</h1>
+@if(@Model["DiseaseList"].Count != 0)
+{
+  <div id="card-area-remedies">
+   @foreach(var disease in Model["DiseaseList"])
+    {
+      <a href="/ailments/@disease.GetId()">
+      <div class="card">
+        <img src="@disease.GetImage()" alt="disease card" />
+        <div class="info">
+          <div class="details-title">
+            <span>@disease.GetName()</span>
+          </div>
+          <div class="details-body">
+            <p>@disease.GetSymtoms()</p>
+          </div>
+        </div>
+      </div>
+      </a>
+    }
+  </div>
+}

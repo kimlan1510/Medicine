@@ -1,0 +1,28 @@
+@{
+  Layout ="Shared/_Layout.cshtml";
+}
+
+<div id="header-wrapper">
+  <h1 id="card-area-header">Ailments</h1>
+</div>
+@if(@Model.Count != 0)
+{
+  <div class="card-area">
+   @foreach(var ailment in Model)
+    {
+      <a href="/ailments/@ailment.GetId()">
+      <div class="card">
+        <img src="@ailment.GetImage()" alt="ailment card" />
+        <div class="info">
+          <div class="details-title">
+            <span>@ailment.GetName()</span>
+          </div>
+          <div class="details-body">
+            <p>@ailment.GetSymtoms()</p>
+          </div>
+        </div>
+      </div>
+      </a>
+    }
+  </div>
+}

@@ -1,0 +1,10 @@
+<form action="/admin/remedyCategory/edit/@Model.GetId()" method="post">
+
+
+  <input type="hidden" name="_method" value="PATCH">
+  <input name="category-id" type="hidden" value="@Model.GetId()">
+
+  <label for="edit-name">Change category name</label>
+  <input name="edit-name" type="text">
+  <button type="submit">Update</button>
+</form>

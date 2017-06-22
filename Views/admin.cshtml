@@ -1,0 +1,160 @@
+
+
+
+<form id="login">
+  <input id="password" type="password" name="password" placeholder="password">
+</br>
+  <button type="submit" name="button">log in</button>
+</form>
+<script>
+  $(document).ready(function(){
+    $("#login").submit(function(event){
+      event.preventDefault();
+      var stringWord = $("input#password").val();
+      if(stringWord == "password")
+      {
+        $(".admin").show();
+      }
+      else
+      {
+        alert("Incorrect Password!")
+      }
+    });
+  });
+</script>
+
+<div class="admin">
+  <h3>Add a new remedy category</h3>
+  <form id="RemedyCategoryForm" action="/admin/remedy/category" method="post">
+    <label for="remedy-category-name">Name</label>
+    </br>
+    <input type="text" id="remedyCategory" name="remedy-category-name" >
+  </br>
+    <button type="submit">Submit</button>
+  </form>
+
+  <h3>Add a new disease category</h3>
+  <form id="DiseaseCategoryForm" action="/admin/disease/category" method="post">
+    <label for="disease-category-name">Name</label>
+    </br>
+    <input type="text" name="disease-category-name" id="diseaseCategory" >
+    </br>
+    <button type="submit">Submit</button>
+  </form>
+
+  <h3>Add a new remedy</h3>
+  <form id="RemedyForm" action="/admin/remedy" method="post">
+    <label for="remedy-name">Name</label>
+    </br>
+    <input id = "RemedyName" type="text" name="remedy-name" >
+    </br>
+    <label for="remedy-description">Description</label>
+    </br>
+    <textarea id = "RemedyDescription" type="text" name="remedy-description" rows="5" cols="50"></textarea>
+    </br>
+    <label for="remedy-side-effect">Side Effect</label>
+    </br>
+    <textarea id = "RemedySideEffect" type="text" name="remedy-side-effect" rows="5" cols="50"></textarea>
+    </br>
+    <label for="remedy-image">URL</label>
+    </br>
+    <input id = "RemedyImage" type="text" name="remedy-image" >
+    </br>
+    <label for="remedy-category-id">Category</label>
+    </br>
+    <select name="remedy-category-id">
+      @foreach (var category in @Model["AllCategoryRemedy"])
+      {
+        <option value="@category.GetId()">@category.GetName()</option>
+      }
+    </select>
+    </br>
+    <button type="submit">Submit</button>
+  </form>
+
+  <h3>Add a new disease</h3>
+  <form id="DiseaseForm" action="/admin/disease" method="post">
+    <label for="disease-name">Name</label>
+    </br>
+    <input type="text" name="disease-name" >
+    </br>
+    <label for="disease-symptom">Symptom</label>
+    </br>
+    <textarea type="text" name="disease-symptom" rows="5" cols="50"></textarea>
+    </br>
+    <label for="disease-image">URL</label>
+    </br>
+    <input type="text" name="disease-image" >
+    </br>
+    <label for="disease-category-id">Category</label>
+    </br>
+    <select name="disease-category-id">
+      @foreach (var category in @Model["AllCategoryDisease"])
+      {
+        <option value="@category.GetId()">@category.GetName()</option>
+      }
+    </select>
+    </br>
+    <button type="submit">Submit</button>
+  </form>
+
+  <h3>Add remedies to diseases</h3>
+  <form action="/admin/addRemediesToDisease" method="post">
+    <label for="treatment">remedies needed</label>
+    <br>
+    @foreach (var remedy in @Model["AllRemedies"])
+    {
+      <input type="checkbox" name="treatment" value="@remedy.GetId()">@remedy.GetName()<br>
+    }
+    <label for="disease">Category</label>
+    <select name="disease_id">
+      @foreach (var disease in @Model["AllDiseases"])
+      {
+        <option value="@disease.GetId()">@disease.GetName()</option>
+      }
+    </select>
+    </br>
+    <button type="submit" name="button">submit</button>
+  </form>
+
+  <h3>All disease categories</h3>
+  @if(@Model["AllCategoryDisease"].Count != 0)
+  {
+    @foreach(var category in Model["AllCategoryDisease"])
+    {
+      <li><a href="/diseaseCategories/@category.GetId()">@category.GetName()</a>  | <a href="/admin/diseaseCategory/edit/@category.GetId()">Edit</a> | <a href="/admin/diseaseCategory/delete/@category.GetId()">Delete</a>
+      </li>
+    }
+  }
+
+  <h3>All remedy categories</h3>
+  @if(@Model["AllCategoryRemedy"].Count != 0)
+  {
+    @foreach(var category in Model["AllCategoryRemedy"])
+    {
+      <li><a href="/remedyCategory/@category.GetId()">@category.GetName()</a>  | <a href="/admin/remedyCategory/edit/@category.GetId()">Edit</a> | <a href="/admin/remedyCategory/delete/@category.GetId()">Delete</a>
+      </li>
+    }
+  }
+
+  <h3>All remedies</h3>
+  @if(@Model["AllRemedies"].Count != 0)
+  {
+    @foreach(var remedy in Model["AllRemedies"])
+    {
+      <li><a href="/remedies/@remedy.GetId()">@remedy.GetName()</a>  | <a href="/admin/remedy/edit/@remedy.GetId()">Edit</a> | <a href="/admin/remedy/delete/@remedy.GetId()">Delete</a>
+      </li>
+    }
+  }
+
+  <h3>All diseases</h3>
+  @if(@Model["AllDiseases"].Count != 0)
+  {
+    @foreach(var disease in Model["AllDiseases"])
+    {
+      <li><a href="/diseases/@disease.GetId()">@disease.GetName()</a>  | <a href="/admin/disease/edit/@disease.GetId()">Edit</a> | <a href="/admin/disease/delete/@disease.GetId()">Delete</a>
+      </li>
+    }
+  }
+
+</div>
