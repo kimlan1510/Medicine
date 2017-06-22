@@ -16,7 +16,7 @@
 <h1 id="card-area-header">@Model["foundRemedy"].GetName() can be used to alleviate these ailments</h1>
 @if(@Model["DiseaseList"].Count != 0)
 {
-  <div class="card-area">
+  <div id="card-area-remedies">
    @foreach(var disease in Model["DiseaseList"])
     {
       <a href="/ailments/@disease.GetId()">

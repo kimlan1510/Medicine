@@ -1,17 +1,31 @@
 @{
   Layout="Shared/_Layout.cshtml";
 }
-  <h1>@Model["foundDisease"].GetName()</h1>
-  <div class="ailment-info">
-    <p>@Model["foundDisease"].GetSymtoms()</p>
+<div id="header-wrapper">
+  <h1 id="card-area-header">@Model["foundDisease"].GetName()</h1>
+  <p class="ailment-info"><img src = "@Model["foundDisease"].GetImage()"></p>
+  <p class="ailment-info">@Model["foundDisease"].GetSymtoms()</p>
+
+</div>
+<h1 id="card-area-header">use these remedies to alleviate this ailment</h1>
+@if(@Model["remedyList"].Count !=0)
+{
+  <div id="card-area-ailments">
+    @foreach(var remedy in Model["remedyList"])
+    {
+      <a href="/remedies/@remedy.GetId()">
+      <div class="card">
+        <img src="@remedy.GetImage()" alt="image of @remedy.GetName()" />
+        <div class="info">
+          <div class="details-title">
+            <span>@remedy.GetName()</span>
+          </div>
+          <div class="details-body">
+            <p>@remedy.GetDescription()</p>
+          </div>
+        </div>
+      </div>
+      </a>
+    }
   </div>
-  <div class="drugstore-remedy">
-    <h2>Over the Counter Name</h2>
-    <img src="../Content/img/over-the-counter.jpg" alt="Drug Store Remedy" />
-    <p>Pok pok selfies iPhone pabst, pour-over single-origin coffee before they sold out scenester jean shorts snackwave put a bird on it mixtape. Authentic lo-fi brooklyn, tofu farm-to-table cliche chartreuse vexillologist mustache hella. Air plant shoreditch VHS, lomo fingerstache poke XOXO literally authentic single-origin coffee butcher banh mi 3 wolf moon.</p>
-  </div>
-  <div class="home-remedy">
-    <h2>Herbal Remedy Name</h2>
-    <img src="../Content/img/herbal-remedy.jpg" alt="Herbal Remedy" />
-    <p>Yr selfies aesthetic taiyaki, godard paleo banh mi cardigan next level yuccie. Listicle raclette ethical, banh mi swag enamel pin truffaut cliche shaman subway tile dreamcatcher direct trade sustainable paleo. Squid distillery kickstarter, small batch cloud bread wolf pour-over.</p>
-  </div>
+}
