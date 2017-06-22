@@ -5,7 +5,7 @@
 }
 
 input {
-  width: 300px;
+  width: 500px;
   height: 40px;
   letter-spacing: .05em;
   font-size: 1.1em;
@@ -13,9 +13,4 @@ input {
   &:focus {
     border: 1px solid $hover-color;
   }
-}
-
-.search {
-  width: 30vw;
-  padding: 30px;
 }

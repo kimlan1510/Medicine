@@ -18,7 +18,7 @@ html {
 *,
 *::before,
 *::after {
-  box-sizing: inherit;
+  // box-sizing: inherit;
 }
 
 body {
@@ -33,15 +33,23 @@ li {
   list-style-type: none;
 }
 
-// .container{
-//   height: 100vh;
-// }
+
+.container {
+  width: 1000px;
+  margin: auto;
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  h1 {
+    text-align: center;
+  }
+}
 
 .card-area {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  margin-top: 10vh;
+  margin-top: 20vh;
 }
 
 #card-area-remedies {
@@ -54,7 +62,7 @@ li {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  margin-top: 60vh;
+  // margin-top: 60vh;
 }
 
 #header-wrapper {
@@ -63,15 +71,18 @@ li {
   width: 100%;
   position: fixed;
   z-index: 1;
-  top: 175px;
+  top: 225px;
   flex-direction: column;
+  @include respond-to('large') {
+    align-self: center;
+  }
 }
 
 #card-area-header {
   font-family: 'Poiret One', cursive;
   font-size: 3em;
   margin: 0 auto;
-  top: 25vh;
+  top: 30vh;
 }
 
 .ailment-info {

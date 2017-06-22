@@ -18,7 +18,7 @@
   display: flex;
   margin: 25vh 8vw 0 8vw;
   flex-wrap: wrap;
-  // justify-content: space-between;
+  flex-direction: column;
   .about-site {
     h1 {
       text-align: center;
@@ -38,14 +38,22 @@
     }
   };
   @include respond-to('large') {
-    margin-top: 60vh;
-    justify-content: space-between;
-    > * {
-      max-width: 50%;
-    }
+    margin-top: 40vh;
+
   }
 }
 
-#home.container {
-  max-width: 1030px;
+.about-box {
+  justify-content: center;
+}
+
+#home .container {
+  max-width: 1000px;
+  margin: auto;
+}
+
+.search {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }

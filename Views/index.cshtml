@@ -24,7 +24,7 @@
 
         <div class="mainNavDropDown">
           <ul class="links">
-            <<a href="/"><li>Home</li></a>
+            <a href="/"><li>Home</li></a>
             <a href="/remedies"><li>Remedies</li></a>
             <a href="/ailments"><li>Ailments</li></a>
             <a href="#"><li>About Us</li></a>
@@ -64,50 +64,54 @@
             </select>
             <button type="submit" name="search">Search</button>
           </form>
-        </div>
-        @if(@Model["diseases"].Count != 0)
-        {
-          <div class="card-area">
-           @foreach(var ailment in Model["diseases"])
-            {
-              <a href="/ailments/@ailment.GetId()">
-              <div class="card">
-                <img src="@ailment.GetImage()" alt="ailment card" />
-                <div class="info">
-                  <div class="details-title">
-                    <span>@ailment.GetName()</span>
-                  </div>
-                  <div class="details-body">
-                    <p>@ailment.GetSymtoms()</p>
+          @if(@Model["diseases"].Count != 0)
+          {
+            <div class="card-area">
+             @foreach(var ailment in Model["diseases"])
+              {
+                <a href="/ailments/@ailment.GetId()">
+                <div class="card">
+                  <img src="@ailment.GetImage()" alt="ailment card" />
+                  <div class="info">
+                    <div class="details-title">
+                      <span>@ailment.GetName()</span>
+                    </div>
+                    <div class="details-body">
+                      <p>@ailment.GetSymtoms()</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-              </a>
-            }
-          </div>
-        }
+                </a>
+              }
+            </div>
+          }
 
-        @if(@Model["remedies"].Count != 0)
-        {
-          <div class="card-area">
-           @foreach(var remedy in Model["remedies"])
-            {
-              <a href="/remedies/@remedy.GetId()">
-              <div class="card">
-                <img src="@remedy.GetImage()" alt="remedy card" />
-                <div class="info">
-                  <div class="details-title">
-                    <span>@remedy.GetName()</span>
-                  </div>
-                  <div class="details-body">
-                    <p>@remedy.GetDescription()</p>
+          @if(@Model["remedies"].Count != 0)
+          {
+            <div class="card-area">
+             @foreach(var remedy in Model["remedies"])
+              {
+                <a href="/remedies/@remedy.GetId()">
+                <div class="card">
+                  <img src="@remedy.GetImage()" alt="remedy card" />
+                  <div class="info">
+                    <div class="details-title">
+                      <span>@remedy.GetName()</span>
+                    </div>
+                    <div class="details-body">
+                      <p>@remedy.GetDescription()</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-              </a>
-            }
-          </div>
-        }
+                </a>
+              }
+            </div>
+          }
+        </div>
+
+
+
+
 
       </div><!--End of main content Div-->
     </div><!-- end of container -->

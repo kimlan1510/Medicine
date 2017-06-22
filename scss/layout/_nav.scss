@@ -37,6 +37,7 @@
     }
 
   }
+
 }
 
 .nav-bar {
@@ -46,7 +47,7 @@
   top: 0;
   z-index: 1;
   height: 80px;
-  width: 100vw;
+  width: 100%;
   background-color: #fff;
   display: flex;
 
@@ -62,11 +63,16 @@
       @include respond-to('large') {
         width: 200px;
         font-size: 3em;
+
       }
     }
   }
   @include respond-to('small') {
     padding: 5vw;
     height: auto;
+  }
+
+  @include respond-to('large') {
+    width: 1000px;
   }
 }

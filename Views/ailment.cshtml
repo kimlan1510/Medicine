@@ -1,3 +1,4 @@
+<div class="container">
 @{
   Layout="Shared/_Layout.cshtml";
 }
@@ -7,19 +8,25 @@
   <p class="ailment-info">@Model["foundDisease"].GetSymtoms()</p>
 
 </div>
-<h1 id="card-area-header">use these remedies to alleviate this ailment</h1>
+<h1 id="remedies-for-single-ailment">Remedies for this Ailment</h1>
 @if(@Model["remedyList"].Count !=0)
+
 {
+
   <div id="card-area-ailments">
     @foreach(var remedy in Model["remedyList"])
     {
+
       <a href="/remedies/@remedy.GetId()">
+
       <div class="card">
         <img src="@remedy.GetImage()" alt="image of @remedy.GetName()" />
+
         <div class="info">
           <div class="details-title">
             <span>@remedy.GetName()</span>
           </div>
+
           <div class="details-body">
             <p>@remedy.GetDescription()</p>
           </div>
@@ -29,3 +36,4 @@
     }
   </div>
 }
+</div>

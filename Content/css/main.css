@@ -511,11 +511,6 @@ template {
 html {
   box-sizing: border-box; }
 
-*,
-*::before,
-*::after {
-  box-sizing: inherit; }
-
 body {
   font-family: 'Lato', sans-serif; }
 
@@ -525,11 +520,20 @@ a {
 li {
   list-style-type: none; }
 
+.container {
+  width: 1000px;
+  margin: auto;
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column; }
+  .container h1 {
+    text-align: center; }
+
 .card-area {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  margin-top: 10vh; }
+  margin-top: 20vh; }
 
 #card-area-remedies {
   display: flex;
@@ -540,8 +544,7 @@ li {
 #card-area-ailments {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
-  margin-top: 60vh; }
+  justify-content: space-around; }
 
 #header-wrapper {
   display: flex;
@@ -549,14 +552,17 @@ li {
   width: 100%;
   position: fixed;
   z-index: 1;
-  top: 175px;
+  top: 225px;
   flex-direction: column; }
+  @media (min-width: 960px) {
+    #header-wrapper {
+      align-self: center; } }
 
 #card-area-header {
   font-family: 'Poiret One', cursive;
   font-size: 3em;
   margin: 0 auto;
-  top: 25vh; }
+  top: 30vh; }
 
 .ailment-info {
   margin: 0 auto; }
@@ -597,7 +603,7 @@ li {
   top: 0;
   z-index: 1;
   height: 80px;
-  width: 100vw;
+  width: 100%;
   background-color: #fff;
   display: flex; }
   .nav-bar .logo {
@@ -616,6 +622,9 @@ li {
     .nav-bar {
       padding: 5vw;
       height: auto; } }
+  @media (min-width: 960px) {
+    .nav-bar {
+      width: 1000px; } }
 
 .disclaimer {
   display: none;
@@ -631,7 +640,8 @@ li {
 .main-content {
   display: flex;
   margin: 25vh 8vw 0 8vw;
-  flex-wrap: wrap; }
+  flex-wrap: wrap;
+  flex-direction: column; }
   .main-content .about-site h1 {
     text-align: center; }
   .main-content .about-site p {
@@ -646,39 +656,36 @@ li {
         margin-top: 5vh; } }
   @media (min-width: 960px) {
     .main-content {
-      margin-top: 60vh;
-      justify-content: space-between; }
-      .main-content > * {
-        max-width: 50%; } }
+      margin-top: 40vh; } }
 
-#home.container {
-  max-width: 1030px; }
+.about-box {
+  justify-content: center; }
 
-.container {
-  margin-top: 100px;
+#home .container {
+  max-width: 1000px;
+  margin: auto; }
+
+.search {
   display: flex;
-  flex-direction: column; }
-  .container h1 {
-    text-align: center; }
+  flex-direction: row;
+  justify-content: space-around; }
 
 img {
   display: block; }
 
-.container {
-  margin-top: 100px;
-  display: flex;
-  flex-direction: column; }
-  .container h1 {
-    text-align: center; }
+#remedies-for-single-ailment {
+  margin-top: 550px;
+  margin-bottom: 30px; }
 
-.remedy-image {
-  margin: 50px; }
-  .remedy-image img {
-    width: 300px;
-    height: 300px; }
-  @media (min-width: 480px) {
-    .remedy-image {
-      margin-left: 100px; } }
+.single-remedy-name {
+  margin-top: 100px; }
+  @media (min-width: 1470px) {
+    .single-remedy-name {
+      margin-top: 160px; } }
+
+.remedy-image img {
+  width: 300px;
+  height: 300px; }
 
 .general-info {
   margin-left: 70px;
@@ -709,11 +716,18 @@ img {
       width: 200px;
       height: 200px; } }
 
-.side-effects h3 {
+.side-effects {
   text-align: center;
-  margin-right: 20px; }
+  margin-right: 20px;
+  margin-bottom: 40px; }
 
 .ailment h3 {
   margin-left: 100px; }
+
+.single-remedy {
+  display: flex;
+  justify-content: space-around;
+  margin: 50px auto;
+  width: 600px; }
 
 /*# sourceMappingURL=main.css.map */

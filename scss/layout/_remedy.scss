@@ -1,21 +1,16 @@
-.container {
+.single-remedy-name {
   margin-top: 100px;
-  display: flex;
-  flex-direction: column;
-  h1 {
-    text-align: center;
+  @include respond-to('x-large') {
+    margin-top: 160px;
   }
 }
 
 .remedy-image {
-  margin: 50px;
+
   img {
   width: 300px;
   height: 300px;
-  }
-  @include respond-to('small') {
-      margin-left: 100px;
-  }
+}
 }
 
 .general-info {
@@ -52,10 +47,18 @@
   }
 }
 
-.side-effects h3{
+.side-effects {
   text-align: center;
   margin-right: 20px;
+  margin-bottom: 40px;
 }
 .ailment h3{
   margin-left: 100px;
+}
+
+.single-remedy {
+  display: flex;
+  justify-content: space-around;
+  margin: 50px auto;
+  width: 600px;
 }
