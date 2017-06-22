@@ -4,13 +4,13 @@
   <input name="remedy-id" type="hidden" value="@Model["SelectedRemedy"].GetId()">
 
   <label for="edit-name">Name</label>
-  <input type="text" name="edit-name" >
+  <input type="text" name="edit-name" value="@Model["SelectedRemedy"].GetName()">
   <label for="edit-symptom">description</label>
-  <input type="text" name="edit-description" >
+  <input type="text" name="edit-description" value="@Model["SelectedRemedy"].GetDescription()">
   <label for="edit-symptom">sideEffect</label>
-  <input type="text" name="edit-sideEffect" >
+  <input type="text" name="edit-sideEffect" value="@Model["SelectedRemedy"].GetSideEffect()">
   <label for="edit-image">URL</label>
-  <input type="text" name="edit-image" >
+  <input type="text" name="edit-image" value="@Model["SelectedRemedy"].GetImage()">
   <label for="edit-category-id">Category</label>
   <select name="edit-category-id">
     @foreach (var category in @Model["AllCategoryRemedy"])

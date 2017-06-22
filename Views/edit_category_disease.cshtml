@@ -1,3 +1,7 @@
+
+
+Edit @Model.GetName();
+
 <form action="/admin/diseaseCategory/edit/@Model.GetId()" method="post">
 
 
@@ -5,6 +9,6 @@
   <input name="category-id" type="hidden" value="@Model.GetId()">
 
   <label for="edit-name">Change category name</label>
-  <input name="edit-name" type="text">
+  <input name="edit-name" type="text" value="@Model.GetName()">
   <button type="submit">Update</button>
 </form>
