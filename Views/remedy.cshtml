@@ -1,54 +1,37 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Mortar &amp; Pestle</title>
-    <meta charset="utf-8" name="viewport" content="width=device-width">
-    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400i,700,700i,900,900i|Poiret+One" rel="stylesheet">
-    <link rel="stylesheet" href="../Content/css/main.css">
-    <script src="https://use.fontawesome.com/15c1261548.js"></script>
-  </head>
-  <body>
-    <div class="nav-bar"><!--Start of Nav-Bar Div-->
-      <div class="logo">
-        <a href="../Views/search.html"><img src="" alt=""><h1>Mortar &amp; Pestle</h1></a>
-      </div>
-      <div class="mainNavDropDown">
-        <ul class="links">
-          <li>Home</li>
-          <li>Remedies</li>
-          <li>Ailments</li>
-          <li>About Us</li>
-        </ul>
-      </div>
+@{
+  Layout="Shared/_Layout.cshtml";
+}
+<h1>@Model["foundRemedy"].GetName()</h1>
+<div class="remedy-image">
+  <img src="@Model["foundRemedy"].GetImage()" alt="remedy card" />
+</div>
+<div class="general-info">
+  <p>@Model["foundRemedy"].GetDescription()</p>
+</div>
+<div class="side-effects">
+  <h3>Side Effects</h3>
+    <p><i class="fa fa-heartbeat" aria-hidden="true"></i>@Model["foundRemedy"].GetSideEffect()</p>
+</div>
 
-        <div class="hamburger">
-          <span class="line"></span>
-          <span class="line"></span>
-          <span class="line"></span>
-        </div>
-
-    </div><!--End of Nav-Bar Div-->
-    <div class="container">
-      <h1>Remedy Name</h1>
-      <div class="remedy-image">
-        <img src="../Content/img/remedy-image1.jpg" alt="remedy card" />
-      </div>
-      <div class="general-info">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-      </div>
-      <div class="ail-effects">
-        <div class="side-effects">
-          <h3>Side Effects</h3>
-            <p><i class="fa fa-heartbeat" aria-hidden="true"></i> Lorem</p>
-        </div>
-        <div class="ailment">
-          <a href="#"><h3>Ailment</h3></a>
-          <img src="../Content/img/ailment1.jpeg" alt="Ailment Image" />
+<h1 id="card-area-header">@Model["foundRemedy"].GetName() can be used to alleviate these ailments</h1>
+@if(@Model["DiseaseList"].Count != 0)
+{
+  <div id="card-area-remedies">
+   @foreach(var disease in Model["DiseaseList"])
+    {
+      <a href="/ailments/@disease.GetId()">
+      <div class="card">
+        <img src="@disease.GetImage()" alt="disease card" />
+        <div class="info">
+          <div class="details-title">
+            <span>@disease.GetName()</span>
+          </div>
+          <div class="details-body">
+            <p>@disease.GetSymtoms()</p>
+          </div>
         </div>
       </div>
-    </div>
-    <script src="../Content/js/jquery-3.2.1.js"></script>
-    <script src="../Content/js/scripts.js"></script>
-  </body>
-</html>
+      </a>
+    }
+  </div>
+}

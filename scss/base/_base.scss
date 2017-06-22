@@ -37,11 +37,17 @@ li {
 //   height: 100vh;
 // }
 
-.card-area {
+#card-area-remedies {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  margin-top: 10vh;
+  margin-top: 8vh;
+}
+#card-area-ailments {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 60vh;
 }
 
 #header-wrapper {
@@ -50,12 +56,17 @@ li {
   width: 100%;
   position: fixed;
   z-index: 1;
-  top: 230px;
+  top: 175px;
+  flex-direction: column;
 }
 
 #card-area-header {
   font-family: 'Poiret One', cursive;
   font-size: 3em;
-  margin: auto;
+  margin: 0 auto;
   top: 25vh;
+}
+
+.ailment-info {
+  margin: 0 auto;
 }

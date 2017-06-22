@@ -11,9 +11,9 @@ namespace Medicine
   {
     public HomeModule()
     {
-      Get["/"] = _ => {
-        return View["index.cshtml"];
-      };
+      // Get["/"] = _ => {
+      //   return View["index.cshtml"];
+      // };
       Get["/ailments"] = _ => {
         List<Disease> AllAilments = Disease.GetAll();
         return View["ailments.cshtml", AllAilments];
@@ -359,16 +359,16 @@ namespace Medicine
         return View["category_disease.cshtml", model];
       };
 
-      Get["/search"] = _ => {
+      Get["/"] = _ => {
         Dictionary<string, object> model = new Dictionary<string, object>();
         List<Remedy> remedies = new List<Remedy>{};
         List<Disease> diseases = new List<Disease>{};
         model.Add("remedies", remedies);
         model.Add("diseases", diseases);
-        return View["search.cshtml", model];
+        return View["index.cshtml", model];
       };
 
-      Post["/search"] = _ => {
+      Post["/"] = _ => {
         List<Remedy> remedies = new List<Remedy>{};
         List<Disease> diseases = new List<Disease>{};
         Dictionary<string, object> model = new Dictionary<string, object>();
@@ -385,7 +385,7 @@ namespace Medicine
         }
         model.Add("remedies", remedies);
         model.Add("diseases", diseases);
-        return View["search.cshtml", model];
+        return View["index.cshtml", model];
       };
 
 

@@ -1,63 +1,27 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Mortar &amp; Pestle</title>
-    <meta charset="utf-8" name="viewport" content="width=device-width">
-    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400i,700,700i,900,900i|Poiret+One" rel="stylesheet">
-    <link rel="stylesheet" href="../Content/css/main.css">
-    <script src="https://use.fontawesome.com/15c1261548.js"></script>
-  </head>
-  <body>
-    <div class="container">
-      <div class="nav-bar">
-        <!--Start of Nav-Bar Div-->
-        <div class="logo">
-          <a href="../Views/search.html"><img src="" alt=""><h1>Mortar &amp; Pestle</h1></a>
+@{
+  Layout="Shared/_Layout.cshtml";
+}
+<div id="header-wrapper">
+  <h1 id="card-area-header">Remedies</h1>
+</div>
+@if(@Model.Count !=0)
+{
+  <div class="card-area">
+    @foreach(var remedy in Model)
+    {
+      <a href="/remedies/@remedy.GetId()">
+      <div class="card">
+        <img src="@remedy.GetImage()" alt="image of @remedy.GetName()" />
+        <div class="info">
+          <div class="details-title">
+            <span>@remedy.GetName()</span>
+          </div>
+          <div class="details-body">
+            <p>@remedy.GetDescription()</p>
+          </div>
         </div>
-
-        <div class="mainNavDropDown">
-          <ul class="links">
-            <a href="#"><li>Home</li></a>
-            <a href="/remedies"><li>Remedies</li></a>
-            <a href="/ailments"><li>Ailments</li></a>
-            <a href="#"><li>About Us</li></a>
-          </ul>
-        </div>
-
-        <div class="hamburger">
-          <span class="line"></span>
-          <span class="line"></span>
-          <span class="line"></span>
-        </div>
-
-      </div><!--End of Nav-Bar Div-->
-      <div id="header-wrapper">
-        <h1 id="card-area-header">Remedies</h1>
       </div>
-      @if(@Model.Count !=0)
-      {
-        <div class="card-area">
-          @foreach(var remedy in Model)
-          {
-            <a href="/remedies/@remedy.GetId()">
-            <div class="card">
-              <img src="@remedy.GetImage()" alt="image of @remedy.GetName()" />
-              <div class="info">
-                <div class="details-title">
-                  <span>@remedy.GetName()</span>
-                </div>
-                <div class="details-body">
-                  <p>@remedy.GetDescription()</p>
-                </div>
-              </div>
-            </div>
-            </a>
-          }
-        </div>
-      }
-    </div>
-  <script src="../content/js/jquery-3.2.1.js"></script>
-  <script src="../content/js/scripts.js"></script>
-  </body>
-</html>
+      </a>
+    }
+  </div>
+}
