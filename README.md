@@ -48,11 +48,11 @@ https://github.com/kimlan1510/Medicine
 
 ## ScreenShots
  Homepage <br/>
- ![Homepage](/Content/img/HomePage.png) <br/>
+ ![Homepage](https://raw.github.com/kimlan1510/Medicine/kimlan/Content/img/HomePage.png) <br/>
  Ailment page <br/>
- ![AilmentPage](/Content/img/AilmentPage.png) <br/>
+ ![AilmentPage](https://raw.github.com/kimlan1510/Medicine/kimlan/Content/img/AilmentPage.png) <br/>
  Details page <br/>
- ![DetailPage](/Content/img/DetailPage.png)
+ ![DetailPage](https://raw.github.com/kimlan1510/Medicine/kimlan/Content/img/DetailPage.png)
 
 
 
