@@ -46,6 +46,14 @@ https://github.com/kimlan1510/Medicine
 * After all files have been downloaded and restored enter dnx kestrel into the terminal to run the server.
 * Open web browser of your choice and go to http://localhost:5004/ to view root page.
 
+## ScreenShots
+ Homepage <br/>
+ ![Homepage](/Content/img/HomePage.png) <br/>
+ Ailment page <br/>
+ ![AilmentPage](/Content/img/AilmentPage.png) <br/>
+ Details page <br/>
+ ![DetailPage](/Content/img/DetailPage.png)
+
 
 
 ## Known bugs
